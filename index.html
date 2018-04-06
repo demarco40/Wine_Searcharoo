@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="pikachu_icon.ico" type="image/gif" sizes="16x16">
+	<title>Pokemon Search</title>
+</head>
+<body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <header class="mdl-layout__header">
+            <div class="mdl-layout__header-row">
+                <span class="mdl-layout-title">Group 1: Pokemon Search Application</span>
+                <div class="mdl-layout-spacer"></div>
+        </header>
+        <main class="mdl-layout__content">
+            <div class="page-content">
+                <div class="mdl-grid">
+                    <div class="mdl-cell mdl-cell--4-col">
+                        <form action="#" style="display: inline-block">
+                            <div class="mdl-textfield mdl-js-textfield">
+                                <input class="mdl-textfield__input" type="text" id="search">
+                                <label class="mdl-textfield__label" for="search">Search Pokemon!</label>
+                            </div>
+                        </form>
+                        <button type="button" onclick="search()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                                Search
+                            </button>
+                        <ul class="demo-list-item mdl-list"></ul>
+                        <template id="pokelist">
+                            <li onclick="select(this)" class="mdl-list__item">
+                                <span class="mdl-list__item-primary-content">
+                                </span>
+                            </li>
+                        </template>
+                        </ul>
+                    </div>
+                    <div class="mdl-cell mdl-cell--4-col">
+                    </div>
+                    <div class="mdl-cell mdl-cell--4-col">
+                        <img src="" id="pokemonimage">
+                        <h3 id="pokemonname"></h3>
+                        <div class="pokemon_content" style="display: none;">
+                            <p id="number"></p>
+                            <p id="height"></p>
+                            <p id="weight"></p>
+                            <p id="catchrate"></p>
+                            <p id="abilities"></p>
+                            <p id="types"></p>
+                            <p id="pokedexentry"></p>
+                            <p id="comment"></p>
+                        </div>
+                        <div class="mdl-cell mdl-cell--6-col">
+                        <form action="#" style="display: none;" id="commentform">
+                                <div class="mdl-textfield mdl-js-textfield">
+                                    <textarea class="mdl-textfield__input" type="text" rows="1" id="commentfield"></textarea>
+                                    <label class="mdl-textfield__label">Add a Comment!</label>
+                                </div>
+                                <button onclick="addComment()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Add Comment</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+        </main>
+        </div>
+        </div>
+</body>
+<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+<script src="functions.js"></script>
+
+</html>

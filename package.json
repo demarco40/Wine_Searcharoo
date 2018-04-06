@@ -1,0 +1,16 @@
+{
+  "name": "wine_searcharoo",
+  "version": "1.0.0",
+  "description": "Wine Search Application",
+  "main": "index.js",
+  "dependencies": {
+    "ejs": "^2.5.8",
+    "mysql": "^2.15.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Team Awesome V2",
+  "license": "ISC"
+}

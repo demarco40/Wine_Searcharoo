@@ -1,4 +1,18 @@
+var BASE_URL = "http://localhost:3000";
+
 function makeSearch() {
+    $.ajax(
+    {
+        url:BASE_URL,
+        type:"GET",
+        async:true,
+        success:function(result){
+            //result should be the fully made template
+            //get the div that is should be in and put it there
+            console.log(result);
+        }
+    }
+);
 console.log("here search");
 }
 

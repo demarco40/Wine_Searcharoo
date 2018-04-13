@@ -6,6 +6,7 @@ app.set('view engine', 'ejs');
 app.get('/', function(req, res) {
     //Do database stuff to get all information we need
     //pass it into render
+    console.log(req.query);
     res.render('pages/index');
 });
 

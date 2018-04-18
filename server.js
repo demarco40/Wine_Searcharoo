@@ -10,11 +10,7 @@ app.get('/', function(req, res) {
     res.render('pages/index');
 });
 
-
-// app.use(bodyParser.urlencoded({extended: true}));
-// app.use(bodyParser.json());
-// app.use(require('./routes/backend_wine'));
-
+app.get('/')
 app.listen(3000, () => {
   console.log('listening on 3000')
 })

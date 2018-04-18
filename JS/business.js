@@ -18,7 +18,12 @@ function makeSearch() {
 );}
 
 function search(ele){
-    
+
+}
+
+function openModal(){
+    var dialog = $("dialog")[0];
+    dialog.showModal();
 }
 
 function makeInventoy() {
@@ -36,4 +41,3 @@ function makeFavorites() {
 function makeCustomWine() {
     console.log("here custom");
 }
-

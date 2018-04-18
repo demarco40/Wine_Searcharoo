@@ -28,10 +28,24 @@
   <!-- Price and Cart Card-->
   <div class="mdl-cell mdl-card mdl-cell--2-col mdl-cell--2-col-tablet mdl-shadow--2dp">
       <div class="mdl-card__actions">
-          <button name="AddProd" type="submit" class="mdl-button mdl-js-button ">More Info   <i class="material-icons mdl-color-text--green-800">info</i></button>
+          <button name="AddProd" type="submit" onclick="openModal()" class="mdl-button mdl-js-button ">More Info   <i class="material-icons mdl-color-text--green-800">info</i></button>
           <button name="AddProd" type="submit" class="mdl-button mdl-js-button ">Add to Wish List   <i class="material-icons mdl-color-text--green-800">card_giftcard</i></button>
           <button name="AddProd" type="submit" class="mdl-button mdl-js-button ">Add to inventory   <i class="material-icons mdl-color-text--green-800">playlist_add</i></button>
           <button name="AddProd" type="submit" class="mdl-button mdl-js-button ">Add to favorites   <i class="material-icons mdl-color-text--green-800">stars</i></button>
       </div>
   </div>
 </div>
+
+<dialog class="mdl-dialog">
+  <h4 class="mdl-dialog__title">Allow data collection?</h4>
+  <div class="mdl-dialog__content">
+      <p>Region: USA -> New York -> Finger Lakes</p>
+      <p>Winery: Hazlitt 1852 Vineyards</p>
+      <p>Blend: Catawba, Baco Noir</p>
+      <p>Price: $7.99</p>
+  </div>
+  <div class="mdl-dialog__actions">
+    <button type="button" class="mdl-button">Agree</button>
+    <button type="button" class="mdl-button close">Disagree</button>
+  </div>
+</dialog>

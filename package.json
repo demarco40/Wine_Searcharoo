@@ -13,7 +13,8 @@
     "nock": "^9.2.5",
     "nodemon": "^1.17.3",
     "npm": "^5.8.0",
-    "simple-mock": "^0.8.0"
+    "simple-mock": "^0.8.0",
+    "sinon": "^4.5.0"
   },
   "devDependencies": {
     "nodemon": "^1.17.2"

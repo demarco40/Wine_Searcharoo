@@ -28,6 +28,7 @@ CREATE TABLE `List` (
   `wine_ID` int(11) NOT NULL,
   `wish_list` tinyint(4) DEFAULT NULL,
   `inventory_list` tinyint(4) DEFAULT NULL,
+  `quantity` int(11) DEFAULT NULL,
   PRIMARY KEY (`wine_ID`),
   KEY `wine_id_idx` (`wine_ID`),
   CONSTRAINT `wine_id` FOREIGN KEY (`wine_ID`) REFERENCES `Wine` (`wineID`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -81,4 +82,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-18 15:26:24
+-- Dump completed on 2018-04-18 16:22:19

@@ -53,6 +53,7 @@ DROP TABLE IF EXISTS `Wine`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Wine` (
   `wineID` int(11) NOT NULL,
+  `wineApiCode` varchar(200) NOT NULL,
   `name` varchar(200) DEFAULT NULL,
   `region` varchar(150) DEFAULT NULL,
   `winery` varchar(150) DEFAULT NULL,

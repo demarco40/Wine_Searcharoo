@@ -2,7 +2,7 @@
     <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
         <div class="mdl-cell mdl-cell--2-col is-dirty">
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input type="search" onsearch="searchForDocs()" id="searchBar" class="mdl-textfield__input darker"
+            <input type="search" onsearch="search(this)" id="searchBar" class="mdl-textfield__input darker"
                    type="text">
             <label class="mdl-textfield__label darker" for="searchBar">Begin your search here. . .</label>
         </div>
@@ -30,10 +30,10 @@
   <!-- Price and Cart Card-->
   <div class="mdl-cell mdl-card mdl-cell--2-col mdl-cell--2-col-tablet mdl-shadow--8dp">
       <div class="mdl-card__actions">
-          <button name="AddProd" type="submit" onclick="openModal()" class="mdl-button mdl-js-button ">More Info   <i class="material-icons mdl-color-text--green-800">info</i></button>
-          <button name="AddProd" type="submit" class="mdl-button mdl-js-button ">Add to Wish List   <i class="material-icons mdl-color-text--green-800">card_giftcard</i></button>
-          <button name="AddProd" type="submit" class="mdl-button mdl-js-button ">Add to inventory   <i class="material-icons mdl-color-text--green-800">playlist_add</i></button>
-          <button name="AddProd" type="submit" class="mdl-button mdl-js-button ">Add to favorites   <i class="material-icons mdl-color-text--green-800">stars</i></button>
+          <button name="wineApiCode" type="submit" onclick="openModal(this.name)" class="mdl-button mdl-js-button ">More Info   <i class="material-icons mdl-color-text--green-800">info</i></button>
+          <button name="wineApiCode" type="submit" onclick="addToWishList(this.name)" class="mdl-button mdl-js-button ">Add to Wish List   <i class="material-icons mdl-color-text--green-800">card_giftcard</i></button>
+          <button name="wineApiCode" type="submit" class="mdl-button mdl-js-button ">Add to inventory   <i class="material-icons mdl-color-text--green-800">playlist_add</i></button>
+          <button name="wineApiCode" type="submit" class="mdl-button mdl-js-button ">Add to favorites   <i class="material-icons mdl-color-text--green-800">stars</i></button>
       </div>
   </div>
 </div>

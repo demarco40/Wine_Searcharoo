@@ -135,4 +135,6 @@ function makeCustomWine() {
     console.log("here custom");
 }
 
-//Test for slack notification
+function doRandom(){
+    console.log("TEST");
+}

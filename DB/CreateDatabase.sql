@@ -59,6 +59,7 @@ CREATE TABLE `Wine` (
   `winery` varchar(150) DEFAULT NULL,
   `grape_varietal` varchar(100) DEFAULT NULL,
   `price` varchar(25) DEFAULT NULL,
+  `vintage` varchar(100) DEFAULT NULL,
   `image_url` varchar(200) DEFAULT NULL,
   `favorite` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`wineID`)
@@ -83,4 +84,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-18 16:22:19
+-- Dump completed on 2018-04-20 12:21:10

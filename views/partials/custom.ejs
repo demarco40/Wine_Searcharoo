@@ -1,35 +1,43 @@
-<h1>CUSTOM</h1>
 <div class="mdl-grid" id="product Form">
             <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
-            <div class=" mdl-card mdl-cell mdl-cell--8-col mdl-shadow--2dp">
-                <form action="admin.php" method="post" enctype="multipart/form-data">
-                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label pad-left is-upgraded" data-upgraded=",MaterialTextfield">
-                        <input class="mdl-textfield__input" type="text" name="nameText" id="nameText" "="">
-                        <label class="mdl-textfield__label darker pad-left" for="nameText">Name</label>
-                    </div>
-                    <br>        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label pad-left is-upgraded" data-upgraded=",MaterialTextfield">
-            <input class="mdl-textfield__input" type="text" name="quantityTxt" id="quantityTxt" "="">
-            <label class="mdl-textfield__label darker pad-left" for="quantityTxt">Quantity Available</label>
+            <div class=" custom-card mdl-card--border mdl-cell mdl-cell--8-col mdl-shadow--8dp">
+                <form class="customForm" action="admin.php" method="post" enctype="multipart/form-data" style="background: #f5e5f8;">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input type="search" onsearch="searchForDocs()" id="searchBar" class="mdl-textfield__input darker"
+                   type="text">
+            <label class="mdl-textfield__label darker" for="searchBar">Name</label>
         </div>
-        <br>        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label pad-left is-upgraded" data-upgraded=",MaterialTextfield">
-            <input class="mdl-textfield__input" type="text" name="priceTxt" id="priceTxt" "="">
-            <label class="mdl-textfield__label darker pad-left" for="priceTxt">Price</label>
+        <br>        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+<input type="search" onsearch="searchForDocs()" id="searchBar" class="mdl-textfield__input darker"
+       type="text">
+<label class="mdl-textfield__label darker" for="searchBar">Vintage</label>
+</div>
+                    <br>        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input type="search" onsearch="searchForDocs()" id="searchBar" class="mdl-textfield__input darker"
+                   type="text">
+            <label class="mdl-textfield__label darker" for="searchBar">Region</label>
         </div>
-        <br>        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label pad-left is-upgraded" data-upgraded=",MaterialTextfield">
-            <input class="mdl-textfield__input" type="text" name="saleTxt" id="saleTxt" "="">
-            <label class="mdl-textfield__label darker pad-left" for="saleTxt">Sale Price</label>
+        <br>        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input type="search" onsearch="searchForDocs()" id="searchBar" class="mdl-textfield__input darker"
+                   type="text">
+            <label class="mdl-textfield__label darker" for="searchBar">Winery</label>
         </div>
-        <br>        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label pad-left is-upgraded" data-upgraded=",MaterialTextfield">
-            <textarea class="mdl-textfield__input" type="text" rows="4" maxlength="140" name="descTxt" id="descTxt"></textarea>
-            <label class="mdl-textfield__label darker pad-left" for="descTxt">Product Description</label>
+        <br>        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input type="search" onsearch="searchForDocs()" id="searchBar" class="mdl-textfield__input darker"
+                   type="text">
+            <label class="mdl-textfield__label darker" for="searchBar">Blend</label>
         </div>
-        <br>        <div class="pad-left">
-            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect mdl-js-ripple-effect--ignore-events is-upgraded" for="saleCheck" data-upgraded=",MaterialCheckbox,MaterialRipple">
-               <input type="checkbox" id="saleCheck" name="saleCheck" class="mdl-checkbox__input">
-               <span class="mdl-checkbox__label">On Sale</span>
-            <span class="mdl-checkbox__focus-helper"></span><span class="mdl-checkbox__box-outline"><span class="mdl-checkbox__tick-outline"></span></span><span class="mdl-checkbox__ripple-container mdl-js-ripple-effect mdl-ripple--center" data-upgraded=",MaterialRipple"><span class="mdl-ripple"></span></span></label>
+        <br>        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input type="search" onsearch="searchForDocs()" id="searchBar" class="mdl-textfield__input darker"
+                   type="text">
+            <label class="mdl-textfield__label darker" for="searchBar">Price</label>
         </div>
         <br>
+        <br>        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+<input type="search" onsearch="searchForDocs()" id="searchBar" class="mdl-textfield__input darker"
+       type="text">
+<label class="mdl-textfield__label darker" for="searchBar">Other Information</label>
+</div>
         <div class="pad-left">
             <input type="file" id="file" name="fileSelector">
             <label for="file" class="mdl-button mdl-js-button mdl-button--fab " data-upgraded=",MaterialButton">

@@ -28,6 +28,7 @@ CREATE TABLE `List` (
   `wine_ID` int(11) NOT NULL,
   `wish_list` tinyint(4) DEFAULT NULL,
   `inventory_list` tinyint(4) DEFAULT NULL,
+  `quantity` int(11) DEFAULT NULL,
   PRIMARY KEY (`wine_ID`),
   KEY `wine_id_idx` (`wine_ID`),
   CONSTRAINT `wine_id` FOREIGN KEY (`wine_ID`) REFERENCES `Wine` (`wineID`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -52,11 +53,13 @@ DROP TABLE IF EXISTS `Wine`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Wine` (
   `wineID` int(11) NOT NULL,
+  `wineApiCode` varchar(200) NOT NULL,
   `name` varchar(200) DEFAULT NULL,
   `region` varchar(150) DEFAULT NULL,
   `winery` varchar(150) DEFAULT NULL,
   `grape_varietal` varchar(100) DEFAULT NULL,
   `price` varchar(25) DEFAULT NULL,
+  `vintage` varchar(100) DEFAULT NULL,
   `image_url` varchar(200) DEFAULT NULL,
   `favorite` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`wineID`)
@@ -81,4 +84,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-18 15:26:24
+-- Dump completed on 2018-04-20 12:21:10

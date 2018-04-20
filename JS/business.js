@@ -69,15 +69,15 @@ function search(ele){
 );
 }
 
-
 function openModal(){
     var dialog = $("dialog")[0];
     dialog.showModal();
 }
 
-function closeModal(ele){
+function closeModal(){
     var dialog = $("dialog")[0];
     dialog.close();
+    dialog.remove();
 }
 
 function addToWishList(wineApiCode){
@@ -133,8 +133,4 @@ function makeFavorites() {
 
 function makeCustomWine() {
     console.log("here custom");
-}
-
-function doRandom(){
-    console.log("TEST");
 }

@@ -75,6 +75,11 @@ function openModal(){
     dialog.showModal();
 }
 
+function closeModal(ele){
+    var dialog = $("dialog")[0];
+    dialog.close();
+}
+
 function addToWishList(wineApiCode){
     //add the wine to the database. All we need is wineId (should be auto inc), wineApiCode, and favorite (defaults to 0)
     addWineToDB(wineApiCode);
@@ -113,6 +118,7 @@ function addWineToDB(wineApiCode){
 );
 
 }
+
 function makeInventoy() {
     console.log("here inventory");
 }

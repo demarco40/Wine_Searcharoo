@@ -7,6 +7,7 @@ app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+
 app.get('/', function(req, res) {
     //Do database stuff to get all information we need
     //pass it into render
@@ -14,12 +15,17 @@ app.get('/', function(req, res) {
     res.render('pages/index');
 });
 
-app.post('/addToDb', function(req,res){
+app.post('/addToWineTable', function(req,res){
+    //all wine info to be added to table
     var wineJson = req.body['wines'][0];
+    //call datalayer to do stuff
+});
 
-    dataLayer.select({wineID: 1}).then(function(rows){
-        console.log(rows[0].wineApiCode);
-    });
+app.post('/addToList', function(req,res){
+    var listToAddTo = req.body['listType'];
+    var wineJson = req.body['wines'][0];
+    console.log(listToAddTo);
+    console.log(wineJson);
     //make mysql code here using vars from wineJson
 });
 

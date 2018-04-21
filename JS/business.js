@@ -80,17 +80,11 @@ function closeModal(){
     dialog.remove();
 }
 
-function addToWishList(wineApiCode){
+function addToList(wineApiCode, listType){
+    //hardcoding this for testing. will be part of html element
+    wineApiCode = "pavilion-cabernet-sauvignon-napa-valley-2010";
     //add the wine to the database. All we need is wineId (should be auto inc), wineApiCode, and favorite (defaults to 0)
     addWineToDB(wineApiCode);
-    //console.log("get wine info from api for: ");
-    //
-}
-
-function addWineToDB(wineApiCode){
-    //first get all info for the wine using unique api code
-    //hardcoding it for testing
-    wineApiCode = "pavilion-cabernet-sauvignon-napa-valley-2010";
     $.ajax(
     {
         url:SNOOTH_API+wineApiCode,
@@ -99,12 +93,46 @@ function addWineToDB(wineApiCode){
         success:function(result){
             //result is a json string for the wine that was just clicked. turn it into an object
             var jsonObj = JSON.parse(result);
-            //console.log(jsonObj);
-
+            jsonObj.listType = listType;
             //make an ajax call to the server to add it to the database
+            //this will check to see if it exists before adding it
             $.ajax(
                 {
-                    url:BASE_URL+"addToDb",
+                    url:BASE_URL+"addToList",
+                    type:"POST",
+                    data: JSON.stringify(jsonObj),
+                    contentType: 'application/json',
+                    success:function(result){
+                        console.log("made call to add wine to DB");
+                    }
+                }
+            );
+        }
+    }
+);
+
+
+
+    //console.log("get wine info from api for: ");
+    //
+}
+
+function addWineToDB(wineApiCode){
+    //first get all info for the wine using unique api code
+    $.ajax(
+    {
+        url:SNOOTH_API+wineApiCode,
+        type:"GET",
+        async:true,
+        success:function(result){
+            //result is a json string for the wine that was just clicked. turn it into an object
+            var jsonObj = JSON.parse(result);
+
+            //make an ajax call to the server to add it to the database
+            //this will check to see if it exists before adding it
+            $.ajax(
+                {
+                    url:BASE_URL+"addToWineTable",
                     type:"POST",
                     data: JSON.stringify(jsonObj),
                     contentType: 'application/json',

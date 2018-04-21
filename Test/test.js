@@ -60,6 +60,7 @@ describe('Server Tests - GET', function() {
 });
 
 describe('Server Tests - POST', function() {
+
   it('Should add a single wine', function(done) {
     chai.request('http://localhost:3000')
       .post('/addToDb')
@@ -69,4 +70,9 @@ describe('Server Tests - POST', function() {
         done();
       });
   });
+
+});
+
+describe('Business Tests', function() {
+
 });

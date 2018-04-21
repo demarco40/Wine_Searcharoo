@@ -6,17 +6,20 @@ var connection = mysql.createConnection({
     database: 'wine_search'
 });
 module.exports = {//this makes it so you can use the functions in another file
-    select: function (wineJson) {//slightly different naming convention
-        //console.log(wineJson);
-        var queryParams  = {wineApiCode: 'code-var-from-input'};
-        var query = connection.query('SELECT * FROM wine WHERE ?', queryParams, function(err, result) {
+    //select should have the json it is looking for passed.
+    //EX: select(wineApiCode: "code")
+    select: function (searchJson) {//slightly different naming convention
+        return new Promise(function(resolve, reject){
+            connection.query('SELECT * FROM wine WHERE ?', searchJson, function(err, rows,fields) {
+                if (err) return reject(err);
+                resolve (rows);
+                //console.log(result);
+            });
         });
+        //console.log(wineJson);
+        //console.log(res);
     },
     insert: function (input) {
-        //TODO: need to add vintage to database, then to query params
-        //TODO: need to make wineId auto increment in the database so we dont need to pass in a value
-
-
         //need to check if it already exists before adding
 
         var queryExists = connection.query('SELECT * FROM wine WHERE ?',{wineApiCode:input.code},function(err,result){

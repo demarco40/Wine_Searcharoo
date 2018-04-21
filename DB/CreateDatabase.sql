@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `List`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `List` (
-  `wine_ID` int(11) NOT NULL,
+  `wine_ID` int(11) NOT NULL AUTO_INCREMENT,
   `wish_list` tinyint(4) DEFAULT NULL,
   `inventory_list` tinyint(4) DEFAULT NULL,
   `quantity` int(11) DEFAULT NULL,

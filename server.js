@@ -9,7 +9,19 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 app.get('/', function(req, res) {
-    //Do database stuff to get all information we need
+    //this gets called when it first loads
+    //Do database stuff to get all information we nee
+    //pass it into render
+    //console.log(req.query);
+    res.render('pages/index');
+});
+
+app.get('/search', function(req, res) {
+    //this gets called when it first loads
+    //var wineJson = req.body['wines'][0];
+    console.log(req.query["wines"]);
+    //
+    //Do database stuff to get all information we nee
     //pass it into render
     //console.log(req.query);
     res.render('pages/index');
@@ -24,8 +36,8 @@ app.post('/addToWineTable', function(req,res){
 app.post('/addToList', function(req,res){
     var listToAddTo = req.body['listType'];
     var wineJson = req.body['wines'][0];
-    console.log(listToAddTo);
-    console.log(wineJson);
+    //console.log(listToAddTo);
+    //console.log(wineJson);
     //make mysql code here using vars from wineJson
 });
 

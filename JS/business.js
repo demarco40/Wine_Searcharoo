@@ -20,14 +20,17 @@ function makeSearch(json) {
         //The type of json is undefined. They just opened up the search tab
         console.log("make a search");
     }
+    //console.log(jsonObj["wines"]);
 
     $.ajax(
     {
-        url:BASE_URL,
+        url:BASE_URL+"search",
         type:"GET",
         async:true,
-        data: {search: "SEARCH_VAL"},
+        data: jsonObj,
+        dataType: 'json',
         success:function(result){
+            //console.log(result);
             //result should be the fully made template
             //get the div that is should be in and put it there
             //console.log(result);

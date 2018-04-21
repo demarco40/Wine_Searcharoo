@@ -52,7 +52,7 @@ DROP TABLE IF EXISTS `Wine`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Wine` (
-  `wineID` int(11) NOT NULL,
+  `wineID` int(11) NOT NULL AUTO_INCREMENT,
   `wineApiCode` varchar(200) NOT NULL,
   `name` varchar(200) DEFAULT NULL,
   `region` varchar(150) DEFAULT NULL,

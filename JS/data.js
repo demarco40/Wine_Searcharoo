@@ -25,7 +25,6 @@ module.exports = {//this makes it so you can use the functions in another file
 
         //eventually wineID wont be there because it will auto increment
         if (!itExists){
-            var queryParams  = wineApiCode: input.code, name: input.name, region: input.region,
                  winery:input.winery, grape_varietal: input.varietal,price: input.price, vintage: input.vintage,
                  image_url: input.image,favorite:0 };
 

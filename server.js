@@ -19,12 +19,11 @@ app.get('/', function(req, res) {
 app.get('/search', function(req, res) {
     //this gets called when it first loads
     //var wineJson = req.body['wines'][0];
-    console.log(req.query["wines"]);
-    //
+    //console.log(req.query["wines"]);
     //Do database stuff to get all information we nee
     //pass it into render
     //console.log(req.query);
-    res.render('pages/index');
+    res.render('partials/search',{wines: req.query["wines"]});
 });
 
 app.post('/addToWineTable', function(req,res){

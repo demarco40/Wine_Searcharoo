@@ -30,10 +30,16 @@ function makeSearch(json) {
         data: jsonObj,
         dataType: 'json',
         success:function(result){
+            console.log("here");
+            console.log(result);
             //console.log(result);
             //result should be the fully made template
             //get the div that is should be in and put it there
             //console.log(result);
+        },
+        error:function(error){
+            //This is the created HTML element. Not sure why is it is coming back as an error
+            console.log(error.responseText);
         }
     }
 );}

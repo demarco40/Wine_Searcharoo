@@ -16,8 +16,7 @@ app.get('/', function(req, res) {
 
 app.post('/addToDb', function(req,res){
     var wineJson = req.body['wines'][0];
-
-    //console.log(wineJson);
+    
     dataLayer.insert(wineJson);
     //make mysql code here using vars from wineJson
 });

@@ -7,7 +7,7 @@ var data = require("../JS/data.js");
 var should = chai.should();
 chai.use(chaiHttp);
 
-describe('Server Tests', function() {
+describe('Server Tests - GET', function() {
 
   //Tests to make sure the index page is loaded
   it('Should Return the index page', function(done){
@@ -57,6 +57,16 @@ describe('Server Tests', function() {
     .get('/views/partials/search')
     done();
   });
-
 });
 
+describe('Server Tests - POST', function() {
+  it('Should add a single wine', function(done) {
+    chai.request('http://localhost:3000')
+      .post('/addToDb')
+      .send({'name': 'Test'})
+      .end(function(err, res){
+        res.should.have.status(500);
+        done();
+      });
+  });
+});

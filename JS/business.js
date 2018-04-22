@@ -38,8 +38,14 @@ function makeSearch(json) {
             //console.log(result);
         },
         error:function(error){
-            //This is the created HTML element. Not sure why is it is coming back as an error
-            console.log(error.responseText);
+            //eventually this will need to be in the success function above
+            //console.log(error.responseText);
+            //remove all elements from the html div with id search
+            $("#search").empty();
+
+            //replace with search result html made by server
+            //This is the correct created HTML element. Not sure why it is coming back as an error...
+            $("#search").append(error.responseText)
         }
     }
 );}
@@ -66,7 +72,7 @@ function search(ele){
     //make api call and return 100 results
     $.ajax(
     {
-        url:SNOOTH_API+searchVal+"&n=100",
+        url:SNOOTH_API+searchVal+"&n=10",
         type:"GET",
         async:true,
         success:function(result){

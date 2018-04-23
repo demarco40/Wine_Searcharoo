@@ -72,7 +72,7 @@ function search(ele){
     //make api call and return 100 results
     $.ajax(
     {
-        url:SNOOTH_API+searchVal+"&n=10",
+        url:SNOOTH_API+searchVal+"&n=15",
         type:"GET",
         async:true,
         success:function(result){

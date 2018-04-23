@@ -1,16 +1,12 @@
-    <div class="mdl-grid">
-        <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
-            <div class="mdl-cell mdl-cell--2-col is-dirty">
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input type="search" onsearch="search(this)" id="searchBar" class="mdl-textfield__input darker"
-                       type="text">
-                <label class="mdl-textfield__label darker" for="searchBar">Begin your search here. . .</label>
-            </div>
+<div class="centered">
+    <h1>Search for a wine</h1>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label"> 
+            <input type="search" onsearch="search(this)" id="searchBar" class="mdl-textfield__input darker" type="text">
+            <label class="mdl-textfield__label darker" for="searchBar">Begin your search here. . .</label>
         </div>
-    </div>
+</div>
 
     <% if(!locals.wines){ %>
-        <h1>Search for a wine</h1>
     <% } else{ %>
      <% for(var i=0; i < wines.length; i++) { %>
          <div class="mdl-grid">

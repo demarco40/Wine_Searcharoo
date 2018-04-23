@@ -115,11 +115,6 @@ function addToList(wineApiCode, listType){
             }
         }
     );
-
-
-
-    //console.log("get wine info from api for: ");
-    //
 }
 
 function addWineToDB(wineApiCode){

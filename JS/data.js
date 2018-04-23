@@ -43,6 +43,8 @@ module.exports = {//this makes it so you can use the functions in another file
         //listType = 'wish' || 'inventory'
         //need to check if it already exists in the list
         checkJson = (listType == 'wish') ? ({wish_list:1}) : ({inventory_list:1});
+        //checkJson.wineApiCode = wineApiCode;
+        //connection.query('SELECT * FROM list JOIN wine on list.wineID = wine.wineID WHERE ?',checkJson,function(err,result){
         connection.query('SELECT * FROM list WHERE ?',checkJson,function(err,result){
             //result is the list of all wines in the correct list.
             //If the searched wine already exists just increment the quantity
@@ -51,8 +53,8 @@ module.exports = {//this makes it so you can use the functions in another file
             //     console.log("get the ID for the searched wine: ");
             //     console.log(result);
             // });
-            console.log("check these results: ");
-            if (results.length == 0) {
+            console.log("All items in the list to check against: ");
+            if (result.length == 0) {
                 //There is nothing in the list. add it
             }
             console.log(result);

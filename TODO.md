@@ -9,3 +9,4 @@
 - Make the cutom wine form create a card in the inventory page.
 - Fix the search text box. Bug where after searching a wine and then searching another causes the placeholder text to not disappear.
 - Any additonal style changes we think look good.
+- More info button on inventory page is throwing an error.

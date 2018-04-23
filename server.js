@@ -29,12 +29,14 @@ app.get('/search', function(req, res) {
 app.post('/addToWineTable', function(req,res){
     //all wine info to be added to table
     var wineJson = req.body['wines'][0];
+    dataLayer.addToDB(wineJson);
     //call datalayer to do stuff
 });
 
 app.post('/addToList', function(req,res){
-    var listToAddTo = req.body['listType'];
-    var wineJson = req.body['wines'][0];
+    var listType = req.body['listType'];
+    var wineApiCode = req.body['code'];
+    dataLayer.addToList(wineApiCode,listType);
     //console.log(listToAddTo);
     //console.log(wineJson);
     //make mysql code here using vars from wineJson

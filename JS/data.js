@@ -62,6 +62,8 @@ module.exports = {//this makes it so you can use the functions in another file
             return false;
         });
 
+
+
         //eventually wineID wont be there because it will auto increment
         // if (!queryExists){
         //     //need to get the wineID using a select
@@ -74,5 +76,7 @@ module.exports = {//this makes it so you can use the functions in another file
         //         console.log("INSERTED: "+result);
         //     });
         // }
-    }
+    },
+
+    
 };

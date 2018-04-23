@@ -26,6 +26,11 @@ app.get('/search', function(req, res) {
     res.render('partials/search',{wines: req.query["wines"]});
 });
 
+app.get('/modal', function(req, res){
+    console.log(req.query);
+    res.render('partials/modal',{wines: req.query["wines"]});
+})
+
 app.post('/addToWineTable', function(req,res){
     //all wine info to be added to table
     var wineJson = req.body['wines'][0];

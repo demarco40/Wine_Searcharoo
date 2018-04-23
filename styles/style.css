@@ -2,6 +2,13 @@
     margin-top: 10%;
 }
 
+.mdl-textfield__label.darker{
+    color: rgba(0, 0, 0, 0.5) !important;
+}
+.mdl-textfield__input.darker{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5) !important;
+}
+
 .centered{
     text-align:center;
 }

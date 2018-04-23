@@ -96,35 +96,25 @@ function closeModal(){
 }
 
 function addToList(wineApiCode, listType){
-    //hardcoding this for testing. will be part of html element
-    wineApiCode = "pavilion-cabernet-sauvignon-napa-valley-2010";
-    //add the wine to the database. All we need is wineId (should be auto inc), wineApiCode, and favorite (defaults to 0)
+    //add the wine to the database. This will check to make sure it is not already there
     addWineToDB(wineApiCode);
-    $.ajax(
-    {
-        url:SNOOTH_API+wineApiCode,
-        type:"GET",
-        async:true,
-        success:function(result){
+
+    //make a call to snooth to get all wine info
+
             //result is a json string for the wine that was just clicked. turn it into an object
-            var jsonObj = JSON.parse(result);
-            jsonObj.listType = listType;
-            //make an ajax call to the server to add it to the database
-            //this will check to see if it exists before adding it
-            $.ajax(
-                {
-                    url:BASE_URL+"addToList",
-                    type:"POST",
-                    data: JSON.stringify(jsonObj),
-                    contentType: 'application/json',
-                    success:function(result){
-                        console.log("made call to add wine to DB");
-                    }
-                }
-            );
+    var jsonParams = {listType: listType, code: wineApiCode};
+            //make an ajax call to the server to add it to the list
+    $.ajax(
+        {
+            url:BASE_URL+"addToList",
+            type:"POST",
+            data: JSON.stringify(jsonParams),
+            contentType: 'application/json',
+            success:function(result){
+                console.log("made call to add wine to DB");
+            }
         }
-    }
-);
+    );
 
 
 

@@ -50,7 +50,7 @@ module.exports = {//this makes it so you can use the functions in another file
         connection.query("SELECT wineID FROM wine WHERE ?",{wineApiCode:String(wineApiCode)},function(err,result){
             //The wine was not found in the database if this error comes back
             if (err) return console.log(err);
-            else{//The wineID was found. use it for the next query
+            else if (result.length == 1){//The wineID was found. use it for the next query
                 //this is the wine ID of the passed in wine
                 //console.log(result);
                 //console.log(result['wineID']);
@@ -59,11 +59,12 @@ module.exports = {//this makes it so you can use the functions in another file
                 connection.query("select * from list WHERE ?",{wine_ID:result[0]['wineID']},function(err,result){
                     //error when getting this wineID from the list.
                     if (err) return err;
-                    console.log("params: ");
-                    console.log(queryParams);
+                    console.log("params:");
+                    wineID = queryParams["wine_ID"];
 
 
                     if(result.length == 0){
+                        console.log("adding new");
                         //Not already in any lists. add it to the requested list. other list is 0.
                         if (listType == 'wish') {
                             queryParams.wish_list = 1;
@@ -81,29 +82,29 @@ module.exports = {//this makes it so you can use the functions in another file
                         });
                     }
                     else{
+                        console.log("checking to increment");
                         if (result[0]['wish_list'] && listType == "wish"){
                             //increment the wish list quantity
                             console.log("increment quantity for wish");
-                            searchJson = [{wishQty:result[0]['wishQty']+1},{wine_ID:result[0]['wineID']}];
+                            searchJson = [{wishQty:result[0]['wishQty']+1},{wine_ID:wineID}];
                         }
 
                         else if (result[0]['inventory_list'] && listType == "inventory"){
                             //increment the inventory
                             console.log("increment quantity for inv");
-                            searchJson = [{invQty:result[0]['invQty']+1},{wine_ID:result[0]['wineID']}];
+                            searchJson = [{invQty:result[0]['invQty']+1},{wine_ID:wineID}];
                         }
                         else if(!result[0]['wish_list'] && listType == "wish"){
                             console.log("add to wish list, qty 1");
                             //add to wish list. make qty 1
-                            searchJson = [{wish_list:1,wishQty:1},{wine_ID:result[0]['wineID']}];
+                            searchJson = [{wish_list:1,wishQty:1},{wine_ID:wineID}];
                         }
                         else if(!result[0]['inventory_list'] && listType == "inventory"){
                             console.log("add to inv list, qty 1");
                             //add to inventory, make qty 1
-                            searchJson = [{inventory_list:1,invQty:1},{wine_ID:result[0]['wineID']}];
+                            searchJson = [{inventory_list:1,invQty:1},{wine_ID:wineID}];
                         }
                         //[{wishQty:result[0]['wishQty']+1},{wine_ID:result[0]['wineID']}]
-
                         connection.query("UPDATE list set ? where ?", searchJson,
                           function(err, result){
                              if (err) console.log(err);

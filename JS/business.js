@@ -90,6 +90,7 @@ function openModal(apiUnqiueCode){
         type:"GET",
         async:true,
         success:function(result){
+            jsonObj = JSON.parse(result)
             $.ajax({
                 url:BASE_URL+"modal",
                 type:"GET",
@@ -98,7 +99,7 @@ function openModal(apiUnqiueCode){
                 dataType: 'json',
                 success:function(result){
                     console.log("here");
-                    console.log(result);
+                    //console.log(result);
                 },
                 error:function(error){
                 }

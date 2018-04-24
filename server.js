@@ -28,7 +28,7 @@ app.get('/search', function(req, res) {
 
 app.get('/modal', function(req, res){
     console.log(req.query);
-    res.render('partials/modal',{wines: req.query["wines"]});
+    //res.render('partials/modal',{wines: req.query["wines"]});
 })
 
 app.post('/addToList', function(req,res){

@@ -28,7 +28,8 @@ CREATE TABLE `List` (
   `wine_ID` int(11) NOT NULL AUTO_INCREMENT,
   `wish_list` tinyint(4) DEFAULT NULL,
   `inventory_list` tinyint(4) DEFAULT NULL,
-  `quantity` int(11) DEFAULT NULL,
+  `wishQty` int(11) DEFAULT NULL,
+  `invQty` int(11) DEFAULT NULL,
   PRIMARY KEY (`wine_ID`),
   KEY `wine_id_idx` (`wine_ID`),
   CONSTRAINT `wine_id` FOREIGN KEY (`wine_ID`) REFERENCES `Wine` (`wineID`) ON DELETE NO ACTION ON UPDATE NO ACTION

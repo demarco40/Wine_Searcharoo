@@ -84,7 +84,28 @@ function search(ele){
 );
 }
 
-function openModal(){
+function openModal(apiUnqiueCode){
+    $.ajax({
+        url:SNOOTH_API+apiUnqiueCode,
+        type:"GET",
+        async:true,
+        success:function(result){
+            $.ajax({
+                url:BASE_URL+"modal",
+                type:"GET",
+                async:true,
+                data: jsonObj,
+                dataType: 'json',
+                success:function(result){
+                    console.log("here");
+                    console.log(result);
+                },
+                error:function(error){
+                }
+            });
+        }
+    });
+
     var dialog = $("dialog")[0];
     dialog.showModal();
 }

@@ -99,16 +99,17 @@ function openModal(apiUnqiueCode){
                 dataType: 'json',
                 success:function(result){
                     console.log("here");
-                    //console.log(result);
+                    console.log(result);
                 },
                 error:function(error){
+                    var modal = $("#modalHolder");
+                    modal.append(error.responseText);
+                    var dialog = $("dialog")[0];
+                    dialog.showModal();
                 }
             });
         }
     });
-
-    var dialog = $("dialog")[0];
-    dialog.showModal();
 }
 
 function closeModal(){

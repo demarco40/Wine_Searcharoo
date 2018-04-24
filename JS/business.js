@@ -12,43 +12,42 @@ function makeSearch(json) {
         }
         //They had results. Make ajax call to server to generate html for results
         if (jsonObj["meta"]["results"] >= 1) {
-            console.log("make the result page for ");
-            console.log(jsonObj["wines"]);
+            $.ajax(
+            {
+                url:BASE_URL+"search",
+                type:"GET",
+                async:true,
+                data: jsonObj,
+                dataType: 'json',
+                success:function(result){
+                    console.log("here");
+                    console.log(result);
+                    //console.log(result);
+                    //result should be the fully made template
+                    //get the div that is should be in and put it there
+                    //console.log(result);
+                },
+                error:function(error){
+                    //eventually this will need to be in the success function above
+                    //console.log(error.responseText);
+                    //remove all elements from the html div with id search
+                    $("#search").empty();
+
+                    //replace with search result html made by server
+                    //This is the correct created HTML element. Not sure why it is coming back as an error...
+                    $("#search").append(error.responseText)
+                }
+            }
+        );
         }
     }
     else{
         //The type of json is undefined. They just opened up the search tab
         console.log("make a search");
+
     }
     //console.log(jsonObj["wines"]);
-
-    $.ajax(
-    {
-        url:BASE_URL+"search",
-        type:"GET",
-        async:true,
-        data: jsonObj,
-        dataType: 'json',
-        success:function(result){
-            console.log("here");
-            console.log(result);
-            //console.log(result);
-            //result should be the fully made template
-            //get the div that is should be in and put it there
-            //console.log(result);
-        },
-        error:function(error){
-            //eventually this will need to be in the success function above
-            //console.log(error.responseText);
-            //remove all elements from the html div with id search
-            $("#search").empty();
-
-            //replace with search result html made by server
-            //This is the correct created HTML element. Not sure why it is coming back as an error...
-            $("#search").append(error.responseText)
-        }
-    }
-);}
+}
 
 function search(ele){
     //if they typed more than one word turn it into a string with + between words
@@ -98,8 +97,7 @@ function openModal(apiUnqiueCode){
                 data: jsonObj,
                 dataType: 'json',
                 success:function(result){
-                    console.log("here");
-                    console.log(result);
+
                 },
                 error:function(error){
                     var modal = $("#modalHolder");

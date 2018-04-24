@@ -31,14 +31,6 @@ app.get('/modal', function(req, res){
     res.render('partials/modal',{wines: req.query["wines"]});
 })
 
-app.post('/addToWineTable', function(req,res){
-    //all wine info to be added to table
-    console.log("here");
-    var wineJson = req.body['wines'][0];
-    dataLayer.addToDB(wineJson);
-    //call datalayer to do stuff
-});
-
 app.post('/addToList', function(req,res){
     var listType = req.body['listType'];
     //var wineApiCode = req.body['code'];

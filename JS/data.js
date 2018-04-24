@@ -97,6 +97,7 @@ module.exports = {//this makes it so you can use the functions in another file
                         }
                         //[{wishQty:result[0]['wishQty']+1},{wine_ID:result[0]['wineID']}]
 
+<<<<<<< HEAD
                         connection.query("UPDATE list set ? where ?", searchJson,
                           function(err, result){
                              if (err) console.log(err);
@@ -110,3 +111,23 @@ module.exports = {//this makes it so you can use the functions in another file
         });//WineID select
     }//end add to list
 };//end module.exports
+=======
+
+
+        //eventually wineID wont be there because it will auto increment
+        // if (!queryExists){
+        //     //need to get the wineID using a select
+        //     var queryParams  = {wineID: input.code, wish_list: 0, inventory_list: 0,quantity:1};
+        //     if (listType == 'wish') queryParams.wish_list = 1;
+        //     if (listType == 'inventory') queryParams.inventory = 1;
+        //
+        //     connection.query('insert into list set ?', queryParams, function(err, result) {
+        //         console.log("ERROR: " + err);
+        //         console.log("INSERTED: "+result);
+        //     });
+        // }
+    },
+
+    
+};
+>>>>>>> 0fbd64f0ee047b28dd8b823474469043c6f1220c

@@ -9,6 +9,8 @@ function makeSearch(json) {
         //They had no results. make ajax call to server to generate HTML for no results
         if (jsonObj["meta"]["results"] == 0){
             console.log("no results");
+            $(".result").remove();
+            $("#search").append("<h1 class='result'>no results</h1>");
         }
         //They had results. Make ajax call to server to generate html for results
         if (jsonObj["meta"]["results"] >= 1) {

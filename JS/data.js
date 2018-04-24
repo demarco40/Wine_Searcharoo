@@ -55,10 +55,13 @@ module.exports = {//this makes it so you can use the functions in another file
                 //console.log(result);
                 //console.log(result['wineID']);
                 //Do a query to see if that id is already in the list (for either type)
+                queryParams  = {wine_ID: result[0]['wineID'], wish_list: 0, inventory_list: 0,wishQty:0,invQty:0};
                 connection.query("select * from list WHERE ?",{wine_ID:result[0]['wineID']},function(err,result){
                     //error when getting this wineID from the list.
                     if (err) return err;
-                    var queryParams  = {wine_ID: result[0]['wineID'], wish_list: 0, inventory_list: 0,wishQty:0,invQty:0};
+                    console.log("params: ");
+                    console.log(queryParams);
+
 
                     if(result.length == 0){
                         //Not already in any lists. add it to the requested list. other list is 0.
@@ -80,18 +83,22 @@ module.exports = {//this makes it so you can use the functions in another file
                     else{
                         if (result[0]['wish_list'] && listType == "wish"){
                             //increment the wish list quantity
+                            console.log("increment quantity for wish");
                             searchJson = [{wishQty:result[0]['wishQty']+1},{wine_ID:result[0]['wineID']}];
                         }
 
                         else if (result[0]['inventory_list'] && listType == "inventory"){
                             //increment the inventory
+                            console.log("increment quantity for inv");
                             searchJson = [{invQty:result[0]['invQty']+1},{wine_ID:result[0]['wineID']}];
                         }
                         else if(!result[0]['wish_list'] && listType == "wish"){
+                            console.log("add to wish list, qty 1");
                             //add to wish list. make qty 1
                             searchJson = [{wish_list:1,wishQty:1},{wine_ID:result[0]['wineID']}];
                         }
                         else if(!result[0]['inventory_list'] && listType == "inventory"){
+                            console.log("add to inv list, qty 1");
                             //add to inventory, make qty 1
                             searchJson = [{inventory_list:1,invQty:1},{wine_ID:result[0]['wineID']}];
                         }

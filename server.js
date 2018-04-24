@@ -41,8 +41,10 @@ app.post('/addToWineTable', function(req,res){
 
 app.post('/addToList', function(req,res){
     var listType = req.body['listType'];
-    var wineApiCode = req.body['code'];
-    dataLayer.addToList(wineApiCode,listType);
+    //var wineApiCode = req.body['code'];
+    var wineJson = req.body["wines"][0];
+    dataLayer.addToDB(wineJson);
+    dataLayer.addToList(wineJson['code'],listType);
     //console.log(listToAddTo);
     //console.log(wineJson);
     //make mysql code here using vars from wineJson

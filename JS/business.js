@@ -99,6 +99,24 @@ function addToFavorites(apiCode){
 
 }
 
+function makeFavorites(){
+    $.ajax(
+    {
+        url:BASE_URL+"favorites",
+        type:"GET",
+        dataType: 'json',
+        success:function(result){
+            $("#favorites").empty();
+            $("#favorites").append(result);
+        }
+    }
+);
+}
+
+function removeFromFavorites(apiCode){
+    //remove from the favorites
+}
+
 function openModal(apiUnqiueCode){
     $.ajax({
         url:SNOOTH_API+apiUnqiueCode,
@@ -162,27 +180,29 @@ function addToList(wineApiCode, listType){
 
 
 
-function makeInventoy() {
-    console.log("here inventory");
-}
-
-function makeWishlist() {
-    console.log("here wishlist");
-}
-
-function makeFavorites() {
+function makeList(type) {
     $.ajax(
         {
-            url:BASE_URL+"favorites",
+            url:BASE_URL+"list",
             type:"GET",
+            data: {listType: type},
             dataType: 'json',
             success:function(result){
-                $("#favorites").empty();
-                $("#favorites").append(result);
+                if (type=='wish') {
+                    $("#wishList").empty();
+                    $("#wishList").append(result);
+                }
+                else{
+                    $("#inventory").empty();
+                    $("#inventory").append(result);
+                }
             }
         }
     );
-    console.log("here favs");
+}
+
+function removeFromList(apiCode,listName){
+    console.log("remove it");
 }
 
 function makeCustomWine() {

@@ -25,7 +25,7 @@
                    <button name='<%- wines[i].wineApiCode %>' type="submit" onclick="openModal(this.name)" class="mdl-button mdl-js-button ">More Info   <i class="material-icons mdl-color-text--green-800">info</i></button>
                    <button name="<%- wines[i].wineApiCode %>" type="submit" onclick="addToList(this.name, 'wish')" class="mdl-button mdl-js-button ">Add to Wish List   <i class="material-icons mdl-color-text--green-800">card_giftcard</i></button>
                    <button name="<%- wines[i].wineApiCode %>" type="submit" onclick="addToList(this.name, 'inventory')" class="mdl-button mdl-js-button ">Add to inventory   <i class="material-icons mdl-color-text--green-800">playlist_add</i></button>
-                   <button name="<%- wines[i].wineApiCode %>" type="submit" onclick="addToFavorites(this.name)" class="mdl-button mdl-js-button ">Add to favorites   <i class="material-icons mdl-color-text--green-800">stars</i></button>
+                   <button name="<%- wines[i].wineApiCode %>" type="submit" onclick="removeFromFavorites(this.name)" class="mdl-button mdl-js-button ">Remove favorite   <i class="material-icons mdl-color-text--red-800">remove_circle</i></button>
                </div>
            </div>
          </div>

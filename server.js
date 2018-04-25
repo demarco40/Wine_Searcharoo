@@ -35,9 +35,32 @@ app.get('/favorites', function(req, res){
     //data being passed in needs to be a select
     dataLayer.select("SELECT * FROM wine WHERE ?",{favorite:1}).then(function(result){
         //use this result to make json objects and pass them in
-        console.log(result);
         res.render('partials/favorites',{wines: result},function(err,html){
             res.send(JSON.stringify(html));
+        });
+    });
+
+});
+
+app.get('/list', function(req, res){
+    //this runs when somebody presses the more info tab
+    searchJson = (req.query['listType'] == 'wish') ? ({wish_list:1}) : ({inventory_list:1});
+    //It will generate the modal then return it to put on the page
+    //data being passed in needs to be a select
+    dataLayer.select("SELECT wine_ID FROM list WHERE ?",searchJson).then(function(result){
+        //use this result to make json objects and pass them in
+        idArray = Array();
+        queryString = "SELECT * FROM wine WHERE wineID in (";
+        for (var i = 0; i < result.length; i++) {
+            idArray.push(result[i]['wine_ID']);
+            queryString += "?,";
+        }
+        queryString = queryString.slice(0,-1);
+        queryString += ")";
+        dataLayer.select(queryString, idArray).then(function(wineJson){
+            res.render('partials/list',{wines: wineJson, listType: req.query['listType']},function(err,html){
+                res.send(JSON.stringify(html));
+            });
         });
     });
 

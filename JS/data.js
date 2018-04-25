@@ -135,5 +135,20 @@ module.exports = {//this makes it so you can use the functions in another file
             console.log("Updated favorite result: ");
             console.log(result);
         });
+    },
+    removeFromList: function(apiCode,listType){
+        searchJson = Array();
+        if (listType == 'wish') searchJson.push({wish_list: 0 });
+        if (listType == 'inventory') searchJson.push({inventory_list: 0 });
+        connection.query("SELECT wineID FROM wine WHERE ?", {wineApiCode: apiCode}, function(err, result){
+            if (err) return err;
+            searchJson.push({wine_ID : result[0]['wineID']});
+            connection.query("UPDATE list SET ? where ? ",searchJson,function(err,result){
+                console.log(result);
+                console.log(err);
+            });
+
+        });
+
     }
 };//end module.exports

@@ -78,6 +78,19 @@ app.post('/addToList', function(req,res){
     });
 });
 
+app.post('/removeFromList', function(req,res){
+    //get the list type from passed in json
+    var listType = req.body['type'];
+    //get all the wine info
+    var wineApiCode = req.body['code'];
+    //first add it to the database. If it is already there nothing happens
+
+    //add it to the list
+    dataLayer.removeFromList(wineApiCode,listType);
+    res.send("it worked");
+
+});
+
 app.post('/addToFavs', function(req,res){
     //get all info about the wine
     wineJson = req.body["wines"][0];

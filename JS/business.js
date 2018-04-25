@@ -191,6 +191,23 @@ function addToList(wineApiCode, listType){
 );
 }
 
+function removeFromList(apiCode,listType){
+    console.log("remove it");
+    jsonObj = {code: apiCode, type: listType};
+    $.ajax(
+        {
+            url:BASE_URL+"removeFromList",
+            type:"POST",
+            data: JSON.stringify(jsonObj),
+            contentType: 'application/json',
+            success:function(result){
+                makeList(listType);
+                console.log("made call to add wine to DB");
+            }
+        }
+    );
+}
+
 
 
 function makeList(type) {
@@ -214,9 +231,6 @@ function makeList(type) {
     );
 }
 
-function removeFromList(apiCode,listName){
-    console.log("remove it");
-}
 
 function makeCustomWine() {
     console.log("here custom");

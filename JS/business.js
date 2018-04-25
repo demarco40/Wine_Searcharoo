@@ -192,7 +192,6 @@ function addToList(wineApiCode, listType){
 }
 
 function removeFromList(apiCode,listType){
-    console.log("remove it");
     jsonObj = {code: apiCode, type: listType};
     $.ajax(
         {
@@ -202,7 +201,7 @@ function removeFromList(apiCode,listType){
             contentType: 'application/json',
             success:function(result){
                 makeList(listType);
-                console.log("made call to add wine to DB");
+                console.log("removed wine from list");
             }
         }
     );

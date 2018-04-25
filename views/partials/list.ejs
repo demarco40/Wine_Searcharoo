@@ -13,19 +13,18 @@
        <!-- Info Card-->
        <div class="mdl-card mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-shadow--8dp">
            <div class="mdl-card__title no-bottom-padding">
-               <h2 class="mdl-card__title-text"><%- wines[i].name %></h2>
+               <h2 class="mdl-card__title-text winename"><%- wines[i].name %></h2>
                <div class="mdl-layout-spacer"></div>
            </div>
            <div class="mdl-card__supporting-text no-top-padding">
-               <h4><%- wines[i].type %></h4>
-               <h4><%- wines[i].price %></h4>
+               <p class="cardp">Price: $<%- wines[i].price %></p>
            </div>
        </div>
        <!-- Price and Cart Card-->
        <div class="mdl-cell mdl-card mdl-cell--2-col mdl-cell--2-col-tablet mdl-shadow--2dp">
            <div class="mdl-card__actions">
                <h4>Quantity: </h4>
-               
+
                <button name='<%- wines[i].wineApiCode %>' type="submit" class="mdl-button mdl-js-button" onclick="openModal(this.name)" data-upgraded=",MaterialButton">More Info   <i class="material-icons mdl-color-text--green-800">info</i></button>
                <button name='<%- wines[i].wineApiCode %>' type="submit" class="mdl-button mdl-js-button" onclick="removeFromList(this.name,'<%- listType %>')">Remove   <i class="material-icons mdl-color-text--red-800">delete</i></button>
            </div>

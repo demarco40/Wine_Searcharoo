@@ -95,8 +95,24 @@ function addToFavorites(apiCode){
         );
         }
     });
+}
 
-
+function removeFromFavorites(apiCode){
+    //remove from the favorites
+    $.ajax(
+    {
+        url:BASE_URL+"removeFromFavs",
+        type:"POST",
+        async:true,
+        data: {code: apiCode},
+        success:function(result){
+            console.log("here");
+            makeFavorites();
+            //result is the json of all the wines
+            //pass this into the makeSearch()
+        }
+    }
+);
 }
 
 function makeFavorites(){
@@ -113,9 +129,6 @@ function makeFavorites(){
 );
 }
 
-function removeFromFavorites(apiCode){
-    //remove from the favorites
-}
 
 function openModal(apiUnqiueCode){
     $.ajax({

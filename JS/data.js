@@ -129,5 +129,11 @@ module.exports = {//this makes it so you can use the functions in another file
             console.log("Updated favorite result: ");
             console.log(result);
         });
+    },
+    removeFromFavorites: function(apiCode){
+        connection.query("UPDATE wine SET favorite = 0 where ? ",{wineApiCode: apiCode},function(err,result){
+            console.log("Updated favorite result: ");
+            console.log(result);
+        });
     }
 };//end module.exports

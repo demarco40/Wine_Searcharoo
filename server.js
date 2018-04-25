@@ -88,6 +88,15 @@ app.post('/addToFavs', function(req,res){
     });
 });
 
+app.post('/removeFromFavs', function(req,res){
+    //get the api code from passed in vals
+    wineApiCode = req.body["code"];
+    console.log(wineApiCode);
+    dataLayer.removeFromFavorites(wineApiCode);
+    res.send("it worked");
+
+});
+
 app.listen(3000, () => {
   console.log('listening on 3000')
 })

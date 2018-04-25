@@ -83,7 +83,7 @@ function addToFavorites(apiCode){
             jsonObj = JSON.parse(result)
             $.ajax(
             {
-                url:BASE_URL+"favorite",
+                url:BASE_URL+"addToFavs",
                 type:"POST",
                 async:true,
                 data: jsonObj,
@@ -171,6 +171,17 @@ function makeWishlist() {
 }
 
 function makeFavorites() {
+    $.ajax(
+        {
+            url:BASE_URL+"favorites",
+            type:"GET",
+            dataType: 'json',
+            success:function(result){
+                $("#favorites").empty();
+                $("#favorites").append(result);
+            }
+        }
+    );
     console.log("here favs");
 }
 

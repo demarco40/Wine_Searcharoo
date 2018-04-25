@@ -8,9 +8,9 @@ var connection = mysql.createConnection({
 module.exports = {//this makes it so you can use the functions in another file
     //select should have the json it is looking for passed.
     //EX: select(wineApiCode: "code")
-    select: function (searchVal,searchJson) {//slightly different naming convention
+    select: function (searchQuery,searchJson) {//slightly different naming convention
         return new Promise(function(resolve, reject){
-            connection.query('SELECT * FROM wine WHERE ?', searchJson, function(err, rows,fields) {
+            connection.query(searchQuery, searchJson, function(err, rows,fields) {
                 if (err) return reject(err);
                 resolve (rows);
                 //console.log(result);

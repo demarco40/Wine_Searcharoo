@@ -1,28 +1,33 @@
-
-<div class="centered">
-    <h1 class="searcher">Create a favorites list!</h1>
-</div>
-<div class="mdl-grid">
-  <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
-  <!-- Image Card-->
-  <div class="mdl-cell mdl-cell--2-col mdl-cell--2-col-tablet mdl-shadow--8dp">
-  </div>
-  <!-- Info Card-->
-  <div class="mdl-card mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-shadow--8dp">
-      <div class="mdl-card__title no-bottom-padding">
-          <div class="mdl-layout-spacer"></div>
-      </div>
-      <div class="mdl-card__supporting-text no-top-padding">
-          <h4 class="mdl-card__title-text"></h4>
-      </div>
-  </div>
-  <!-- Price and Cart Card-->
-  <div class="mdl-cell mdl-card mdl-cell--2-col mdl-cell--2-col-tablet mdl-shadow--2dp">
-      <div class="mdl-card__actions">
-          <button name="AddProd" type="submit" class="mdl-button mdl-js-button" onclick="openModal()">More Info<i class="material-icons mdl-color-text--green-800">info</i></button>
-          <button name="AddProd" type="submit" class="mdl-button mdl-js-button">Add to Wish List<i class="material-icons mdl-color-text--green-800">card_giftcard</i></button>
-          <button name="AddProd" type="submit" class="mdl-button mdl-js-button">Add to inventory<i class="material-icons mdl-color-text--green-800">playlist_add</i></button>
-          <button name="AddProd" type="submit" class="mdl-button mdl-js-button">Remove Favorite<i class="material-icons mdl-color-text--green-800">delete</i></button>
-      </div>
-  </div>
-</div>
+    <% if(!locals.wines){ %>
+        <h1>No wines in the favorites</h1>
+    <% } else{ %>
+     <% for(var i=0; i < wines.length; i++) { %>
+         <div class="mdl-grid result">
+           <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
+           <!-- Image Card-->
+           <div class="mdl-cell mdl-cell--2-col mdl-cell--2-col-tablet mdl-shadow--8dp">
+               <img src='<%- wines[i].image_url %>'  height="100%" width="100%" border="0" alt="">
+           </div>
+           <!-- Info Card-->
+           <div class="mdl-card mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-shadow--8dp">
+               <div class="mdl-card__title no-bottom-padding">
+                   <h2 class="mdl-card__title-text"><%- wines[i].name %></h2>
+                   <div class="mdl-layout-spacer"></div>
+               </div>
+               <div class="mdl-card__supporting-text no-top-padding">
+                   <h4><%- wines[i].type %></h4>
+                   <h4><%- wines[i].price %></h4>
+               </div>
+           </div>
+           <!-- Price and Cart Card-->
+           <div class="mdl-cell mdl-card mdl-cell--2-col mdl-cell--2-col-tablet mdl-shadow--8dp">
+               <div class="mdl-card__actions">
+                   <button name='<%- wines[i].wineApiCode %>' type="submit" onclick="openModal(this.name)" class="mdl-button mdl-js-button ">More Info   <i class="material-icons mdl-color-text--green-800">info</i></button>
+                   <button name="<%- wines[i].wineApiCode %>" type="submit" onclick="addToList(this.name, 'wish')" class="mdl-button mdl-js-button ">Add to Wish List   <i class="material-icons mdl-color-text--green-800">card_giftcard</i></button>
+                   <button name="<%- wines[i].wineApiCode %>" type="submit" onclick="addToList(this.name, 'inventory')" class="mdl-button mdl-js-button ">Add to inventory   <i class="material-icons mdl-color-text--green-800">playlist_add</i></button>
+                   <button name="<%- wines[i].wineApiCode %>" type="submit" onclick="addToFavorites(this.name)" class="mdl-button mdl-js-button ">Add to favorites   <i class="material-icons mdl-color-text--green-800">stars</i></button>
+               </div>
+           </div>
+         </div>
+     <% } %>
+<% } %>

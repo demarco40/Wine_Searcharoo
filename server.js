@@ -27,7 +27,21 @@ app.get('/modal', function(req, res){
     res.render('partials/modal',{wine: req.query["wines"]},function(err,html){
         res.send(JSON.stringify(html));
     });
-})
+});
+
+app.get('/favorites', function(req, res){
+    //this runs when somebody presses the more info tab
+    //It will generate the modal then return it to put on the page
+    //data being passed in needs to be a select
+    dataLayer.select("SELECT * FROM wine WHERE ?",{favorite:1}).then(function(result){
+        //use this result to make json objects and pass them in
+        console.log(result);
+        res.render('partials/favorites',{wines: result},function(err,html){
+            res.send(JSON.stringify(html));
+        });
+    });
+
+});
 
 app.post('/addToList', function(req,res){
     //get the list type from passed in json
@@ -40,7 +54,7 @@ app.post('/addToList', function(req,res){
     dataLayer.addToList(wineJson['code'],listType);
 });
 
-app.post('/favorite', function(req,res){
+app.post('/addToFavs', function(req,res){
     //get all info about the wine
     var wineJson = req.body["wines"][0];
     //add it to the DB. If it is already there nothing happens

@@ -12,6 +12,8 @@
 - More info button on inventory page is throwing an error.
 
 #TODO
-- Continue making modal (html design)
-- Add to favorites
-- Form Processing
+- Continue modal html design
+- Continue card result design
+- Form Processing to make custom wine
+- remove from list
+- remove from favorites

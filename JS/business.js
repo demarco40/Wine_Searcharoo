@@ -9,31 +9,36 @@ function makeSearch(json) {
         //They had no results. make ajax call to server to generate HTML for no results
         if (jsonObj["meta"]["results"] == 0){
             console.log("no results");
+            $(".result").remove();
+            $("#search").append("<h1 class='result'>no results</h1>");
         }
         //They had results. Make ajax call to server to generate html for results
         if (jsonObj["meta"]["results"] >= 1) {
-            console.log("make the result page for ");
-            console.log(jsonObj["wines"]);
+            $.ajax(
+            {
+                url:BASE_URL+"search",
+                type:"GET",
+                async:true,
+                data: jsonObj,
+                dataType: 'json',
+                success:function(result){
+                    //result should be the fully made template
+                    $("#search").empty();
+                    $("#search").append(result);
+                    //get the div that is should be in and put it there
+                    //console.log(result);
+                }
+            }
+        );
         }
     }
     else{
         //The type of json is undefined. They just opened up the search tab
         console.log("make a search");
-    }
 
-    $.ajax(
-    {
-        url:BASE_URL,
-        type:"GET",
-        async:true,
-        data: {search: "SEARCH_VAL"},
-        success:function(result){
-            //result should be the fully made template
-            //get the div that is should be in and put it there
-            //console.log(result);
-        }
     }
-);}
+    //console.log(jsonObj["wines"]);
+}
 
 function search(ele){
     //if they typed more than one word turn it into a string with + between words
@@ -57,7 +62,7 @@ function search(ele){
     //make api call and return 100 results
     $.ajax(
     {
-        url:SNOOTH_API+searchVal+"&n=100",
+        url:SNOOTH_API+searchVal+"&n=15",
         type:"GET",
         async:true,
         success:function(result){
@@ -69,28 +74,95 @@ function search(ele){
 );
 }
 
-
-function openModal(){
-    var dialog = $("dialog")[0];
-    dialog.showModal();
+function addToFavorites(apiCode){
+    $.ajax({
+        url:SNOOTH_API+apiCode,
+        type:"GET",
+        async:true,
+        success:function(result){
+            jsonObj = JSON.parse(result)
+            $.ajax(
+            {
+                url:BASE_URL+"addToFavs",
+                type:"POST",
+                async:true,
+                data: jsonObj,
+                success:function(result){
+                    //result is the json of all the wines
+                    //pass this into the makeSearch()
+                }
+            }
+        );
+        }
+    });
 }
 
-function closeModal(ele){
+function removeFromFavorites(apiCode){
+    //remove from the favorites
+    $.ajax(
+    {
+        url:BASE_URL+"removeFromFavs",
+        type:"POST",
+        async:true,
+        data: {code: apiCode},
+        success:function(result){
+            console.log("here");
+            makeFavorites();
+            //result is the json of all the wines
+            //pass this into the makeSearch()
+        }
+    }
+);
+}
+
+function makeFavorites(){
+    $.ajax(
+    {
+        url:BASE_URL+"favorites",
+        type:"GET",
+        dataType: 'json',
+        success:function(result){
+            $("#favorites").empty();
+            $("#favorites").append(result);
+        }
+    }
+);
+}
+
+
+function openModal(apiUnqiueCode){
+    $.ajax({
+        url:SNOOTH_API+apiUnqiueCode,
+        type:"GET",
+        async:true,
+        success:function(result){
+            jsonObj = JSON.parse(result)
+            $.ajax({
+                url:BASE_URL+"modal",
+                type:"GET",
+                async:true,
+                data: jsonObj,
+                dataType: 'json',
+                success:function(result){
+                    var modal = $("#modalHolder");
+                    modal.append(result);
+                    var dialog = $("dialog")[0];
+                    dialog.showModal();
+                }
+            });
+        }
+    });
+}
+
+function closeModal(){
     var dialog = $("dialog")[0];
     dialog.close();
+    dialog.remove();
 }
 
-function addToWishList(wineApiCode){
-    //add the wine to the database. All we need is wineId (should be auto inc), wineApiCode, and favorite (defaults to 0)
-    addWineToDB(wineApiCode);
-    //console.log("get wine info from api for: ");
-    //
-}
+function addToList(wineApiCode, listType){
 
-function addWineToDB(wineApiCode){
-    //first get all info for the wine using unique api code
-    //hardcoding it for testing
-    wineApiCode = "pavilion-cabernet-sauvignon-napa-valley-2010";
+    //make a call to snooth to get all wine info
     $.ajax(
     {
         url:SNOOTH_API+wineApiCode,
@@ -99,12 +171,13 @@ function addWineToDB(wineApiCode){
         success:function(result){
             //result is a json string for the wine that was just clicked. turn it into an object
             var jsonObj = JSON.parse(result);
-            //console.log(jsonObj);
+            jsonObj.listType = listType;
 
             //make an ajax call to the server to add it to the database
+            //this will check to see if it exists before adding it
             $.ajax(
                 {
-                    url:BASE_URL+"addToDb",
+                    url:BASE_URL+"addToList",
                     type:"POST",
                     data: JSON.stringify(jsonObj),
                     contentType: 'application/json',
@@ -116,25 +189,48 @@ function addWineToDB(wineApiCode){
         }
     }
 );
-
 }
 
-function makeInventoy() {
-    console.log("here inventory");
+function removeFromList(apiCode,listType){
+    jsonObj = {code: apiCode, type: listType};
+    $.ajax(
+        {
+            url:BASE_URL+"removeFromList",
+            type:"POST",
+            data: JSON.stringify(jsonObj),
+            contentType: 'application/json',
+            success:function(result){
+                makeList(listType);
+                console.log("removed wine from list");
+            }
+        }
+    );
 }
 
-function makeWishlist() {
-    console.log("here wishlist");
+
+
+function makeList(type) {
+    $.ajax(
+        {
+            url:BASE_URL+"list",
+            type:"GET",
+            data: {listType: type},
+            dataType: 'json',
+            success:function(result){
+                if (type=='wish') {
+                    $("#wishList").empty();
+                    $("#wishList").append(result);
+                }
+                else{
+                    $("#inventory").empty();
+                    $("#inventory").append(result);
+                }
+            }
+        }
+    );
 }
 
-function makeFavorites() {
-    console.log("here favs");
-}
 
 function makeCustomWine() {
     console.log("here custom");
-}
-
-function doRandom(){
-    console.log("TEST");
 }

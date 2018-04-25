@@ -1,12 +1,16 @@
-<dialog class="mdl-dialog">
-  <h4 class="mdl-dialog__title">Allow data collection?</h4>
-  <div class="mdl-dialog__content">
-    <p>
-      Allowing us to collect data will let us get you the information you want faster.
-    </p>
+
+<% for(var i=0; i < wine.length; i++) { %>
+<dialog class="mdl-dialog" style="width: 500px">
+  <div class="mdl-dialog__content" style="padding-top: 0px">
+      <p class="modalp"><span class="modalspan">Name: </span><%- wine[i].name %></p>
+      <p class="modalp"><span class="modalspan">Winery: </span><%- wine[i].winery %></p>
+      <p class="modalp"><span class="modalspan">Region: </span><%- wine[i].region %></p>
+      <p class="modalp"><span class="modalspan">Vintage: </span><%- wine[i].vintage %></p>
+      <p class="modalp"><span class="modalspan">Varietal: </span><%- wine[i].varietal %></p>
+      
   </div>
   <div class="mdl-dialog__actions">
-    <button type="button" class="mdl-button">Agree</button>
-    <button type="button" class="mdl-button close">Disagree</button>
+    <button type="button" onclick="closeModal()" class="mdl-button">Close</button>
   </div>
 </dialog>
+<% } %>

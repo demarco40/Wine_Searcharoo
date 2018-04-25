@@ -35,6 +35,11 @@ app.get('/favorites', function(req, res){
     //data being passed in needs to be a select
     dataLayer.select("SELECT * FROM wine WHERE ?",{favorite:1}).then(function(result){
         //use this result to make json objects and pass them in
+        if (result.length == 0){
+            res.render('partials/favorites',{wines: null},function(err,html){
+                res.send(JSON.stringify(html));
+            });
+        }
         res.render('partials/favorites',{wines: result},function(err,html){
             res.send(JSON.stringify(html));
         });

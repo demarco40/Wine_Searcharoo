@@ -85,6 +85,31 @@ function search(ele){
 );
 }
 
+function addToFavorites(apiCode){
+    $.ajax({
+        url:SNOOTH_API+apiCode,
+        type:"GET",
+        async:true,
+        success:function(result){
+            jsonObj = JSON.parse(result)
+            $.ajax(
+            {
+                url:BASE_URL+"favorite",
+                type:"POST",
+                async:true,
+                data: jsonObj,
+                success:function(result){
+                    //result is the json of all the wines
+                    //pass this into the makeSearch()
+                }
+            }
+        );
+        }
+    });
+
+
+}
+
 function openModal(apiUnqiueCode){
     $.ajax({
         url:SNOOTH_API+apiUnqiueCode,
@@ -147,11 +172,9 @@ function addToList(wineApiCode, listType){
         }
     }
 );
-
-            //result is a json string for the wine that was just clicked. turn it into an object
-            //make an ajax call to the server to add it to the list
-
 }
+
+
 
 function makeInventoy() {
     console.log("here inventory");

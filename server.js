@@ -42,6 +42,17 @@ app.post('/addToList', function(req,res){
     //make mysql code here using vars from wineJson
 });
 
+app.post('/favorite', function(req,res){
+    // var listType = req.body['listType'];
+    //var wineApiCode = req.body['code'];
+    var wineJson = req.body["wines"][0];
+    console.log(wineJson);
+    dataLayer.addToDB(wineJson);
+    dataLayer.addToFavorites(wineJson['code']);
+    //console.log(listToAddTo);
+    //make mysql code here using vars from wineJson
+});
+
 app.listen(3000, () => {
   console.log('listening on 3000')
 })

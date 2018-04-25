@@ -116,5 +116,11 @@ module.exports = {//this makes it so you can use the functions in another file
                 });//End list select
             }//End wineID else
         });//WineID select
-    }//end add to list
+    },//end add to list
+    addToFavorites: function(apiCode){
+        connection.query("UPDATE wine SET favorite = 1 where ? ",{wineApiCode: apiCode},function(err,result){
+            console.log("Updated favorite result: ");
+            console.log(result);
+        });
+    }
 };//end module.exports

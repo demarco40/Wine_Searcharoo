@@ -1,6 +1,5 @@
 const express = require('express');
 var bodyParser = require('body-parser');
-var ejs = require('ejs');
 var app = express();
 var dataLayer = require('./JS/data.js');
 app.use(express.static("../Wine_Searcharoo"));
@@ -10,52 +9,44 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 app.get('/', function(req, res) {
-    //this gets called when it first loads
-    //Do database stuff to get all information we nee
-    //pass it into render
-    //console.log(req.query);
+    //this runs initally and makes the index starting page
     res.render('pages/index');
 });
 
 app.get('/search', function(req, res) {
-    //this gets called when it first loads
-    //var wineJson = req.body['wines'][0];
-    //console.log(req.query["wines"]);
-    //Do database stuff to get all information we nee
-    //pass it into render
-    //console.log(req.query);
-    var html = res.render('partials/search',{wines: req.query["wines"]}, function(err,html){
+    //this runs when sombody makes a search.
+    //It will generate the return html then send it back to put on the page
+    res.render('partials/search',{wines: req.query["wines"]}, function(err,html){
         res.send(JSON.stringify(html));
     });
 });
 
 app.get('/modal', function(req, res){
-    //console.log(req.query);
-    return res.render('partials/modal',{wine: req.query["wines"]},function(err,html){
+    //this runs when somebody presses the more info tab
+    //It will generate the modal then return it to put on the page
+    res.render('partials/modal',{wine: req.query["wines"]},function(err,html){
         res.send(JSON.stringify(html));
     });
 })
 
 app.post('/addToList', function(req,res){
+    //get the list type from passed in json
     var listType = req.body['listType'];
-    //var wineApiCode = req.body['code'];
+    //get all the wine info
     var wineJson = req.body["wines"][0];
+    //first add it to the database. If it is already there nothing happens
     dataLayer.addToDB(wineJson);
+    //add it to the list
     dataLayer.addToList(wineJson['code'],listType);
-    //console.log(listToAddTo);
-    //console.log(wineJson);
-    //make mysql code here using vars from wineJson
 });
 
 app.post('/favorite', function(req,res){
-    // var listType = req.body['listType'];
-    //var wineApiCode = req.body['code'];
+    //get all info about the wine
     var wineJson = req.body["wines"][0];
-    console.log(wineJson);
+    //add it to the DB. If it is already there nothing happens
     dataLayer.addToDB(wineJson);
+    //add it to the favorites
     dataLayer.addToFavorites(wineJson['code']);
-    //console.log(listToAddTo);
-    //make mysql code here using vars from wineJson
 });
 
 app.listen(3000, () => {

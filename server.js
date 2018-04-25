@@ -1,5 +1,6 @@
 const express = require('express');
 var bodyParser = require('body-parser');
+var ejs = require('ejs');
 var app = express();
 var dataLayer = require('./JS/data.js');
 app.use(express.static("../Wine_Searcharoo"));
@@ -23,12 +24,16 @@ app.get('/search', function(req, res) {
     //Do database stuff to get all information we nee
     //pass it into render
     //console.log(req.query);
-    res.render('partials/search',{wines: req.query["wines"]});
+    var html = res.render('partials/search',{wines: req.query["wines"]}, function(err,html){
+        res.send(JSON.stringify(html));
+    });
 });
 
 app.get('/modal', function(req, res){
     //console.log(req.query);
-    return res.render('partials/modal',{wine: req.query["wines"]});
+    return res.render('partials/modal',{wine: req.query["wines"]},function(err,html){
+        res.send(JSON.stringify(html));
+    });
 })
 
 app.post('/addToList', function(req,res){

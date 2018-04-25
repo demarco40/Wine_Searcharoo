@@ -22,22 +22,11 @@ function makeSearch(json) {
                 data: jsonObj,
                 dataType: 'json',
                 success:function(result){
-                    console.log("here");
-                    console.log(result);
-                    //console.log(result);
                     //result should be the fully made template
+                    $("#search").empty();
+                    $("#search").append(result);
                     //get the div that is should be in and put it there
                     //console.log(result);
-                },
-                error:function(error){
-                    //eventually this will need to be in the success function above
-                    //console.log(error.responseText);
-                    //remove all elements from the html div with id search
-                    $("#search").empty();
-
-                    //replace with search result html made by server
-                    //This is the correct created HTML element. Not sure why it is coming back as an error...
-                    $("#search").append(error.responseText)
                 }
             }
         );
@@ -124,11 +113,8 @@ function openModal(apiUnqiueCode){
                 data: jsonObj,
                 dataType: 'json',
                 success:function(result){
-
-                },
-                error:function(error){
                     var modal = $("#modalHolder");
-                    modal.append(error.responseText);
+                    modal.append(result);
                     var dialog = $("dialog")[0];
                     dialog.showModal();
                 }

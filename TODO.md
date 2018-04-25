@@ -15,5 +15,3 @@
 - Continue modal html design
 - Continue card result design
 - Form Processing to make custom wine
-- remove from list
-- remove from favorites

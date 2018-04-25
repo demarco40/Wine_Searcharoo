@@ -22,20 +22,27 @@ module.exports = {//this makes it so you can use the functions in another file
     addToDB: function (wineJson) {
         //need to check if it already exists before adding
         //console.log(wineJson);
-        connection.query('SELECT * FROM wine WHERE ?',{wineApiCode: String(wineJson.code)},function(err,result){
-            if (result.length > 0) {
-                //there was a result
-            }
-            if (result.length == 0){
-                //there was no result. add it
-                var queryParams  = {wineApiCode: wineJson.code, name: wineJson.name, region: wineJson.region,
-                     winery:wineJson.winery, grape_varietal: wineJson.varietal,price: wineJson.price, vintage: wineJson.vintage,
-                     image_url: wineJson.image,favorite:0 };
+        return new Promise(function(resolve, reject) {
+            connection.query('SELECT * FROM wine WHERE ?',{wineApiCode: String(wineJson.code)},function(err,result){
+                if (err) return reject(err);
 
-                connection.query('insert into wine set ?', queryParams, function(err, result) {
-                    console.log("INSERTED: "+result);
-                });
-            }
+                if (result.length > 0) {
+                    //there was a result
+                    resolve("already exists");
+                }
+                if (result.length == 0){
+                    //there was no result. add it
+                    var queryParams  = {wineApiCode: wineJson.code, name: wineJson.name, region: wineJson.region,
+                         winery:wineJson.winery, grape_varietal: wineJson.varietal,price: wineJson.price, vintage: wineJson.vintage,
+                         image_url: wineJson.image,favorite:0 };
+
+                    connection.query('insert into wine set ?', queryParams, function(err, result) {
+                        if (err) return reject(err);
+                        resolve(result);
+                    });
+                }
+            });
+
         });
     },
     addToList: function (wineApiCode, listType) {
@@ -71,7 +78,7 @@ module.exports = {//this makes it so you can use the functions in another file
                             queryParams.wishQty = 1;
                         }
                         if (listType == 'inventory') {
-                            queryParams.inventory = 1;
+                            queryParams.inventory_list = 1;
                             queryParams.invQty = 1;
                         }
                         connection.query('insert into list set ?', queryParams, function(err, result) {

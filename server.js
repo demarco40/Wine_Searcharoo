@@ -49,18 +49,20 @@ app.post('/addToList', function(req,res){
     //get all the wine info
     var wineJson = req.body["wines"][0];
     //first add it to the database. If it is already there nothing happens
-    dataLayer.addToDB(wineJson);
-    //add it to the list
-    dataLayer.addToList(wineJson['code'],listType);
+    dataLayer.addToDB(wineJson).then(function(result){
+        //add it to the list
+        dataLayer.addToList(wineJson['code'],listType);
+    });
 });
 
 app.post('/addToFavs', function(req,res){
     //get all info about the wine
-    var wineJson = req.body["wines"][0];
+    wineJson = req.body["wines"][0];
     //add it to the DB. If it is already there nothing happens
-    dataLayer.addToDB(wineJson);
-    //add it to the favorites
-    dataLayer.addToFavorites(wineJson['code']);
+    dataLayer.addToDB(wineJson).then(function(result){
+        //add it to the favorites
+        dataLayer.addToFavorites(wineJson['code']);
+    });
 });
 
 app.listen(3000, () => {

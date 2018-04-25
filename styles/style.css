@@ -19,7 +19,7 @@
 
 .modalp{
     font-size: 20px;
-    color: rgb(0, 0, 0);
+    color: rgb(5, 5, 0.5);
 
 }
 
@@ -28,4 +28,13 @@
     font-weight: bold;
     text-align: left;
     font-size: 24px;
+}
+
+.winename{
+    color: rgb(156,39,176);
+}
+
+.cardp{
+    font-size: 24px;
+    color: rgb(0, 0, 0);
 }

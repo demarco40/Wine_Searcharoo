@@ -1,5 +1,7 @@
     <% if(!locals.wines){ %>
-        <h1>No wines in the favorites</h1>
+        <div class="centered">
+        <h1 class="searcher">You have no items in this list!</h1>
+    </div>
     <% } else{ %>
      <% for(var i=0; i < wines.length; i++) { %>
          <div class="mdl-grid result">

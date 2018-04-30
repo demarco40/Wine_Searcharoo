@@ -1,6 +1,8 @@
 var BASE_URL = "http://localhost:3000/";
 var SNOOTH_API = 'http://api.snooth.com/wines/?akey=2x9uc7hxb09h7bqre2y6pk4ya9sabfdjht6juyd6nls7wel4&ip=66.28.234.115&q=';
 
+//This function uses the html created on the server side and puts in on the page
+//json passed in is API call result for the users search term
 function makeSearch(json) {
     //if the json object is not undefined they did wine search
     if (typeof json !== 'undefined') {
@@ -8,10 +10,10 @@ function makeSearch(json) {
         jsonObj = JSON.parse(json);
         //They had no results. make ajax call to server to generate HTML for no results
         if (jsonObj["meta"]["results"] == 0){
-            console.log("no results");
             $(".result").remove();
             $("#search").append("<h1 class='result'>no results</h1>");
         }
+
         //They had results. Make ajax call to server to generate html for results
         if (jsonObj["meta"]["results"] >= 1) {
             $.ajax(
@@ -22,11 +24,10 @@ function makeSearch(json) {
                 data: jsonObj,
                 dataType: 'json',
                 success:function(result){
-                    //result should be the fully made template
+                    //result is fully made html template
+                    //get the div that is should be in and put it there
                     $("#search").empty();
                     $("#search").append(result);
-                    //get the div that is should be in and put it there
-                    //console.log(result);
                 }
             }
         );
@@ -34,8 +35,6 @@ function makeSearch(json) {
     }
     else{
         //The type of json is undefined. They just opened up the search tab
-        console.log("make a search");
-
     }
     //console.log(jsonObj["wines"]);
 }
@@ -43,7 +42,6 @@ function makeSearch(json) {
 function search(ele){
     //if they typed more than one word turn it into a string with + between words
     var searchVal = "";
-
     //if the search string is more than one word put a + between the words
     if (ele.value.split(" ").length > 1) {
         for (i=0; i < ele.value.split(" ").length; i++) {
@@ -59,7 +57,7 @@ function search(ele){
         searchVal = searchVal.slice(0,-1);
     }
 
-    //make api call and return 100 results
+    //make api call and return 15 results.Anything more breaks it...
     $.ajax(
     {
         url:SNOOTH_API+searchVal+"&n=15",
@@ -74,12 +72,15 @@ function search(ele){
 );
 }
 
+//Takes the passed in api code and sets the favorite flag to 1
 function addToFavorites(apiCode){
+    //make api call to get all wine info just in case we need it
     $.ajax({
         url:SNOOTH_API+apiCode,
         type:"GET",
         async:true,
         success:function(result){
+            //turn result string into json object
             jsonObj = JSON.parse(result)
             $.ajax(
             {
@@ -88,8 +89,7 @@ function addToFavorites(apiCode){
                 async:true,
                 data: jsonObj,
                 success:function(result){
-                    //result is the json of all the wines
-                    //pass this into the makeSearch()
+                    //Wine was added to favs
                 }
             }
         );
@@ -97,8 +97,9 @@ function addToFavorites(apiCode){
     });
 }
 
+//Takes the passed in api code and sets the favorite flag to 0
 function removeFromFavorites(apiCode){
-    //remove from the favorites
+    //remove from the favorites endpoint
     $.ajax(
     {
         url:BASE_URL+"removeFromFavs",
@@ -106,15 +107,14 @@ function removeFromFavorites(apiCode){
         async:true,
         data: {code: apiCode},
         success:function(result){
-            console.log("here");
+            //after it was removed recall the make favorites function so the page updates
             makeFavorites();
-            //result is the json of all the wines
-            //pass this into the makeSearch()
         }
     }
 );
 }
 
+//Make a call to the server to create all favorites
 function makeFavorites(){
     $.ajax(
     {
@@ -137,13 +137,15 @@ function openModal(apiUnqiueCode){
         async:true,
         success:function(result){
             jsonObj = JSON.parse(result)
+            //initiallly set the custom flag to 0
             jsonObj.custom = 0;
             if (apiUnqiueCode.split("-")[0] == 'custom') {
-                console.log("its a custom");
+                //if api code starts with the word custom then set it to 1
                 jsonObj.custom = 1;
                 jsonObj.code = apiUnqiueCode;
             }
 
+            //modal endpoint will deal with if it is custom or not
             $.ajax({
                 url:BASE_URL+"modal",
                 type:"GET",
@@ -151,9 +153,12 @@ function openModal(apiUnqiueCode){
                 data: jsonObj,
                 dataType: 'json',
                 success:function(result){
+                    //Get the modal element on the page
                     var modal = $("#modalHolder");
+                    //Put the dialog html onto the page
                     modal.append(result);
                     var dialog = $("dialog")[0];
+                    //show the modal
                     dialog.showModal();
                 }
             });
@@ -162,13 +167,13 @@ function openModal(apiUnqiueCode){
 }
 
 function closeModal(){
+    //close the modal then remove to dialog element from the page so they dont build up
     var dialog = $("dialog")[0];
     dialog.close();
     dialog.remove();
 }
 
 function addToList(wineApiCode, listType){
-
     //make a call to snooth to get all wine info
     $.ajax(
     {
@@ -198,8 +203,10 @@ function addToList(wineApiCode, listType){
 );
 }
 
+//All we need to remove from the lis is the api code and the list type
 function removeFromList(apiCode,listType){
     jsonObj = {code: apiCode, type: listType};
+    //hit the server endpoint with the two fields
     $.ajax(
         {
             url:BASE_URL+"removeFromList",
@@ -207,8 +214,8 @@ function removeFromList(apiCode,listType){
             data: JSON.stringify(jsonObj),
             contentType: 'application/json',
             success:function(result){
+                //remake the list after removing so the page updates
                 makeList(listType);
-                console.log("removed wine from list");
             }
         }
     );
@@ -217,6 +224,7 @@ function removeFromList(apiCode,listType){
 
 
 function makeList(type) {
+    //Hit the list endpoint and pass in which one needs to be made
     $.ajax(
         {
             url:BASE_URL+"list",
@@ -224,6 +232,8 @@ function makeList(type) {
             data: {listType: type},
             dataType: 'json',
             success:function(result){
+                //result is fully made html page
+                //Put it in the correct div for list type
                 if (type=='wish') {
                     $("#wishList").empty();
                     $("#wishList").append(result);

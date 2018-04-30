@@ -23,11 +23,9 @@ app.get('/search', function(req, res) {
 
 //Modal end point. This will generate the modal html then add it to the page
 app.get('/modal', function(req, res){
-	console.log(req.query['custom']);
-	console.log(req.query['custom'] == 0);
+	//If the wine is custom make the modal slightly different
 	if (req.query['custom'] == 1){
-		console.log("its a custom");
-		//make select then pass that in as the wine
+		//Get all the wine info using a select
 		queryString = "SELECT * from wine where ?";
 		dataLayer.select(queryString, {wineApiCode: req.query['code']}).then(function(wineJson){
 			res.render('partials/modal',{wine: wineJson},function(err,html){
@@ -36,14 +34,11 @@ app.get('/modal', function(req, res){
 		});
 	}
 	if (req.query['custom'] == 0){
+		//Not a custom wine. Use the info that was passed in from the ajax call
 		res.render('partials/modal',{wine: req.query["wines"]},function(err,html){
-			console.log(html);
 			res.send(JSON.stringify(html));
 		});
 	}
-
-    //It will generate the modal then return it to put on the page
-
 });
 
 //Favorites end point. This will create the html for the favorites page
@@ -122,14 +117,11 @@ app.post('/custom', (req, res) => {
 	vintage: req.body['vintage'],
 	image_url: "imgs/custDefault.png",
 	favorite: 1};
-	//"listType": "inventory_list"}
 	//It is automatically being added to favorites
   	dataLayer.addToDB(wineJson);
 	res.render('pages/index');
 
 });
-
- // **************** EDITED ABOVE ****************************************
 
 app.post('/addToList', function(req,res){
     //get the list type from passed in json

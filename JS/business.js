@@ -137,6 +137,13 @@ function openModal(apiUnqiueCode){
         async:true,
         success:function(result){
             jsonObj = JSON.parse(result)
+            jsonObj.custom = 0;
+            if (apiUnqiueCode.split("-")[0] == 'custom') {
+                console.log("its a custom");
+                jsonObj.custom = 1;
+                jsonObj.code = apiUnqiueCode;
+            }
+
             $.ajax({
                 url:BASE_URL+"modal",
                 type:"GET",
@@ -229,4 +236,3 @@ function makeList(type) {
         }
     );
 }
-

@@ -23,10 +23,27 @@ app.get('/search', function(req, res) {
 
 //Modal end point. This will generate the modal html then add it to the page
 app.get('/modal', function(req, res){
+	console.log(req.query['custom']);
+	console.log(req.query['custom'] == 0);
+	if (req.query['custom'] == 1){
+		console.log("its a custom");
+		//make select then pass that in as the wine
+		queryString = "SELECT * from wine where ?";
+		dataLayer.select(queryString, {wineApiCode: req.query['code']}).then(function(wineJson){
+			res.render('partials/modal',{wine: wineJson},function(err,html){
+				res.send(JSON.stringify(html));
+			});
+		});
+	}
+	if (req.query['custom'] == 0){
+		res.render('partials/modal',{wine: req.query["wines"]},function(err,html){
+			console.log(html);
+			res.send(JSON.stringify(html));
+		});
+	}
+
     //It will generate the modal then return it to put on the page
-    res.render('partials/modal',{wine: req.query["wines"]},function(err,html){
-        res.send(JSON.stringify(html));
-    });
+
 });
 
 //Favorites end point. This will create the html for the favorites page

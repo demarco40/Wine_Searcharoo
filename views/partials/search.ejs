@@ -1,8 +1,7 @@
 <div class="centered">
     <h1 class="searcher">Search for a wine</h1>
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input type="search" onsearch="search(this)" id="searchBar" class="mdl-textfield__input darker" type="text">
-            <label class="mdl-textfield__label darker" for="searchBar">Begin your search here. . .</label>
+            <input type="search" onsearch="search(this)" id="searchBar" class="mdl-textfield__input darker" type="text" placeholder="Begin Your Search Here. . . ">
         </div>
 </div>
 
@@ -19,12 +18,11 @@
            <!-- Info Card-->
            <div class="mdl-card mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-shadow--8dp">
                <div class="mdl-card__title no-bottom-padding">
-                   <h2 class="mdl-card__title-text"><%- wines[i].name %></h2>
+                   <h2 class="mdl-card__title-text winename" ><%- wines[i].name %></h2>
                    <div class="mdl-layout-spacer"></div>
                </div>
                <div class="mdl-card__supporting-text no-top-padding">
-                   <h4><%- wines[i].type %></h4>
-                   <h4><%- wines[i].price %></h4>
+                   <p class="cardp">Price: $<%- wines[i].price %></p>
                </div>
            </div>
            <!-- Price and Cart Card-->

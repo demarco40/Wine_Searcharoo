@@ -1,50 +1,59 @@
 <div class="mdl-grid" id="product Form">
             <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
             <div class=" custom-card mdl-card--border mdl-cell mdl-cell--8-col mdl-shadow--8dp">
-                <form class="customForm" action="admin.php" method="post" enctype="multipart/form-data" style="background: #f5e5f8;">
+                <form method="post" action="/custom" enctype="multipart/form-data" style="background: #f5e5f8;">
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input type="search" onsearch="searchForDocs()" id="searchBar" class="mdl-textfield__input darker"
-                   type="text">
-            <label class="mdl-textfield__label darker" for="searchBar">Name</label>
+            <input id="custName" class="mdl-textfield__input clearable darker"
+                   type="text" required>
+                   <button class="clear" type="reset">
+        <i class="material-icons">cancel</i>
+      </button>
+            <label class="mdl-textfield__label darker" for="custName">Name</label>
         </div>
         <br>        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-<input type="search" onsearch="searchForDocs()" id="searchBar" class="mdl-textfield__input darker"
+<input pattern="\d{4}$" id="custVintage" class="mdl-textfield__input clearable darker"
        type="text">
-<label class="mdl-textfield__label darker" for="searchBar">Vintage</label>
+       <button class="clear" type="reset">
+        <i class="material-icons">cancel</i>
+      </button>
+<label class="mdl-textfield__label darker" for="custVintage">Vintage</label>
 </div>
                     <br>        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input type="search" onsearch="searchForDocs()" id="searchBar" class="mdl-textfield__input darker"
+            <input id="custRegion" class="mdl-textfield__input clearable darker"
                    type="text">
-            <label class="mdl-textfield__label darker" for="searchBar">Region</label>
+                   <button class="clear" type="reset">
+        <i class="material-icons">cancel</i>
+      </button>
+            <label class="mdl-textfield__label darker" for="custRegion">Region</label>
         </div>
         <br>        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input type="search" onsearch="searchForDocs()" id="searchBar" class="mdl-textfield__input darker"
+            <input id="custWinery" class="mdl-textfield__input clearable darker"
                    type="text">
-            <label class="mdl-textfield__label darker" for="searchBar">Winery</label>
+                   <button class="clear" type="reset">
+        <i class="material-icons">cancel</i>
+      </button>
+            <label class="mdl-textfield__label darker" for="custWinery">Winery</label>
         </div>
         <br>        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input type="search" onsearch="searchForDocs()" id="searchBar" class="mdl-textfield__input darker"
+            <input id="custBlend" class="mdl-textfield__input clearable darker"
                    type="text">
-            <label class="mdl-textfield__label darker" for="searchBar">Blend</label>
+                   <button class="clear" type="reset">
+        <i class="material-icons">cancel</i>
+      </button>
+            <label class="mdl-textfield__label darker" for="custBlend">Blend</label>
         </div>
         <br>        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input type="search" onsearch="searchForDocs()" id="searchBar" class="mdl-textfield__input darker"
+            <input pattern="^\$?\d+(\.\d{2})?$" id="custPrice" class="mdl-textfield__input clearable darker"
                    type="text">
-            <label class="mdl-textfield__label darker" for="searchBar">Price</label>
+                   <button class="clear" type="reset">
+        <i class="material-icons">cancel</i>
+      </button>
+            <label class="mdl-textfield__label darker" for="custPrice">Price</label>
         </div>
         <br>
-        <br>        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-<input type="search" onsearch="searchForDocs()" id="searchBar" class="mdl-textfield__input darker"
-       type="text">
-<label class="mdl-textfield__label darker" for="searchBar">Other Information</label>
-</div>
-        <div class="pad-left">
-            <input type="file" id="file" name="fileSelector">
-            <label for="file" class="mdl-button mdl-js-button mdl-button--fab " data-upgraded=",MaterialButton">
-              <i class="material-icons mdl-color-text--blue-500">add_a_photo</i>
-            </label>
-        </div>
-        <br>
+
+ 
+
         <div class="pad-left">
                 <button name="submitButton" type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" data-upgraded=",MaterialButton,MaterialRipple">Submit<span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button>
                 <button name="resetButton" type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" data-upgraded=",MaterialButton,MaterialRipple">Reset<span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button>

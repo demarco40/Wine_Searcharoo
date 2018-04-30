@@ -150,5 +150,11 @@ module.exports = {//this makes it so you can use the functions in another file
 
         });
 
-    }
+    },
+    validateAndProcess: function(theForm, wineJson){
+    	var reason = "";
+    	reason += name
+    },
+    
+
 };//end module.exports

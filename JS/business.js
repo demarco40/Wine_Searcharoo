@@ -230,7 +230,3 @@ function makeList(type) {
     );
 }
 
-
-function makeCustomWine() {
-    console.log("here custom");
-}

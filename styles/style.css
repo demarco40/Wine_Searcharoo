@@ -38,3 +38,48 @@
     font-size: 24px;
     color: rgb(0, 0, 0);
 }
+
+/* Below Allows for clearning individual text fields in form */
+
+.clearable:focus,
+.clearable:hover {
+  padding-right: 16px;
+}
+
+.clearable::-webkit-input-placeholder {color: rgba(0,0,0,.26)}
+.clearable::-moz-placeholder          {color: rgba(0,0,0,.26)} /* Firefox 19+ */
+.clearable:-moz-placeholder           {color: rgba(0,0,0,.26)} /* Firefox 18- */
+.clearable:-ms-input-placeholder      {color: rgba(0,0,0,.26)}
+
+.clear {
+  cursor: pointer;
+	background-color: transparent;
+	color: transparent;
+  border: 0;
+  margin: 0;
+	visibility: hidden;
+  position: absolute;
+  right: -8px;
+  bottom: 22px;
+  outline: none;
+}
+
+.clearable:not(:placeholder-shown)+.clear {
+  visibility: visible;
+}
+
+.clearable:not(:placeholder-shown):hover+.clear,
+.clearable:not(:placeholder-shown):focus+.clear,
+.clear:hover {
+  color: rgba(0,0,0,.74);
+}
+
+.clear>i {
+  border-radius: 50%;
+  font-size: 18px;
+}
+
+.clearable:hover+.clear>i,
+.clear:hover>i {
+  background-color: white;
+}

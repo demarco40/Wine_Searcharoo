@@ -3,51 +3,59 @@
     <div class=" custom-card mdl-card--border mdl-cell mdl-cell--8-col mdl-shadow--8dp">
         <form method="post" action="/custom" style="background: #f5e5f8;">
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input name="name" id="custName" class="mdl-textfield__input clearable darker" type="text" required>
+                <input name="name" pattern="^[a-zA-Z\s]*$" id="custName" class="mdl-textfield__input clearable darker" type="text" required>
                 <button class="clear" type="reset">
                     <i class="material-icons">cancel</i>
                 </button>
                 <label class="mdl-textfield__label darker" for="custName">Name</label>
+                <span class="mdl-textfield__error"> This is required. Only Letters Please.</span>
             </div>
             <br>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input name="vintage" pattern="\d{4}$" id="custVintage" class="mdl-textfield__input clearable darker" type="text">
+                <input name="vintage" pattern="^\d{4}$" id="custVintage" class="mdl-textfield__input clearable darker" type="text" required>
                 <button class="clear" type="reset">
                     <i class="material-icons">cancel</i>
                 </button>
-                <label class="mdl-textfield__label darker" for="custVintage">Vintage (YYYY)</label>
+                <label class="mdl-textfield__label darker" for="custVintage">Vintage</label>
+                <span class="mdl-textfield__error"> This is required. Format: YYYY</span>
             </div>
             <br>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input name="region" id="custRegion" class="mdl-textfield__input clearable darker" type="text">
+                <input name="region" pattern="^[a-zA-Z\s]*$" id="custRegion" class="mdl-textfield__input clearable darker" type="text">
                 <button class="clear" type="reset">
                     <i class="material-icons">cancel</i>
                 </button>
                 <label class="mdl-textfield__label darker" for="custRegion">Region</label>
+                <span class="mdl-textfield__error">Only Letters Please.</span>
             </div>
             <br>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input name="winery" id="custWinery" class="mdl-textfield__input clearable darker" type="text">
+                <input name="winery" pattern="^[a-zA-Z\s]*$" id="custWinery" class="mdl-textfield__input clearable darker" type="text">
                 <button class="clear" type="reset">
                     <i class="material-icons">cancel</i>
                 </button>
                 <label class="mdl-textfield__label darker" for="custWinery">Winery</label>
+                <span class="mdl-textfield__error">Only Letters Please.</span>
+
             </div>
             <br>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input name="blend" id="custBlend" class="mdl-textfield__input clearable darker" type="text">
+                <input name="blend" pattern="^[a-zA-Z\s]*$" id="custBlend" class="mdl-textfield__input clearable darker" type="text">
                 <button class="clear" type="reset">
                     <i class="material-icons">cancel</i>
                 </button>
                 <label class="mdl-textfield__label darker" for="custBlend">Grape Blend</label>
+                <span class="mdl-textfield__error">Only Letters Please.</span>
+
             </div>
             <br>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input name="price" pattern="^\$?\d+(\.\d{2})?$" id="custPrice" class="mdl-textfield__input clearable darker" type="text">
+                <input name="price" pattern="^\$?\d+(\.\d{2})?$" id="custPrice" class="mdl-textfield__input clearable darker" type="text" required>
                 <button class="clear" type="reset">
                     <i class="material-icons">cancel</i>
                 </button>
-                <label class="mdl-textfield__label darker" for="custPrice">Price (XX.XX)</label>
+                <label class="mdl-textfield__label darker" for="custPrice">Price</label>
+                <span class="mdl-textfield__error"> This is required. Format: XX.XX</span>
             </div>
             <br>
             <div class="pad-left">

@@ -31,10 +31,13 @@ module.exports = {//this makes it so you can use the functions in another file
                     resolve("already exists");
                 }
                 if (result.length == 0){
+                    console.log("passed custom json");
+                    console.log(wineJson);
                     //there was no result. add it
                     var queryParams  = {wineApiCode: wineJson.code, name: wineJson.name, region: wineJson.region,
                          winery:wineJson.winery, grape_varietal: wineJson.varietal,price: wineJson.price, vintage: wineJson.vintage,
                          image_url: wineJson.image,favorite:0 };
+                    if (wineJson.favorite) queryParams.favorite = 1;
 
                     connection.query('insert into wine set ?', queryParams, function(err, result) {
                         if (err) return reject(err);
@@ -155,6 +158,6 @@ module.exports = {//this makes it so you can use the functions in another file
     	var reason = "";
     	reason += name
     },
-    
+
 
 };//end module.exports

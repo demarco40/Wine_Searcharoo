@@ -1,8 +1,5 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const middlewares = [
-	bodyParser.urlencoded()
-]
 var app = express();
 var dataLayer = require('./JS/data.js');
 app.use(express.static("../Wine_Searcharoo"));
@@ -10,8 +7,6 @@ app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
-
-app.use(middlewares);
 
 app.get('/', function(req, res) {
     //this runs initally and makes the index starting page
@@ -90,49 +85,48 @@ app.get('/list', function(req, res){
 
 
 app.get('/custom', (req, res) => {
-  res.render('partials/custom', {
-    data: {},
-    errors: {}
-  })
-})
+	res.render('pages/index');
+});
 
 
 app.post('/custom', (req, res) => {
-  res.render('partials/custom', {
-    data: req.body, // { name, vintage, region, winery, blend, price }
-    errors: {
-      custName: {
-        msg: 'A name is required'
-      },
-      custVintage: {
-        msg: 'That vintage doesn‘t look right. [YYYY]'
-      },
-      custRegion: {
-        msg: 'A region was improperly written'
-      },
-      custWinery: {
-        msg: 'A winery name was improperly written'
-      },
-      custBlend: {
-        msg: 'The blend was improperly written'
-      },
-      custPrice: {
-        msg: 'A price must be entered as [x.xx] or [$x.xx]'
-      }
-    }
-  })
-  
-  
-  var custJson = {"wineApiCode": "custom", 
-	"name": custName, 
-	"region": custRegion,
-	"winery": custWinery, 
-	"grape_varietal": custBlend,
-	"price": custPrice, 
-	"vintage": custVintage,
-	"image_url": "imgs/custDefault.png"};
+//   res.render('partials/custom', {
+//     data: req.body, // { name, vintage, region, winery, blend, price }
+//     errors: {
+//       custName: {
+//         msg: 'A name is required'
+//       },
+//       custVintage: {
+//         msg: 'That vintage doesn‘t look right. [YYYY]'
+//       },
+//       custRegion: {
+//         msg: 'A region was improperly written'
+//       },
+//       custWinery: {
+//         msg: 'A winery name was improperly written'
+//       },
+//       custBlend: {
+//         msg: 'The blend was improperly written'
+//       },
+//       custPrice: {
+//         msg: 'A price must be entered as [x.xx] or [$x.xx]'
+//       }
+//     }
+// });
+
+	console.log(req.body);
+
+   	var custJson = {code: "custom",
+	name: req.body['name'],
+	region: req.body['region'],
+	winery: req.body['winery'],
+	grape_varietal: req.body['blend'],
+	price: req.body['price'],
+	vintage: req.body['vintage'],
+	image_url: "imgs/custDefault.png",
+	favorite: 1};
 	//"listType": "inventory_list"}
-  
+
   dataLayer.addToDB(custJson)// .then(function(result){
         //add it to the list
         //dataLayer.addToList(wineJson['code'],listType);
@@ -189,4 +183,3 @@ app.post('/removeFromFavs', function(req,res){
 app.listen(3000, () => {
   console.log('listening on 3000')
 });
-

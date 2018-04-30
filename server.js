@@ -96,33 +96,7 @@ app.get('/custom', (req, res) => {
 
 
 app.post('/custom', (req, res) => {
-//   res.render('partials/custom', {
-//     data: req.body, // { name, vintage, region, winery, blend, price }
-//     errors: {
-//       custName: {
-//         msg: 'A name is required'
-//       },
-//       custVintage: {
-//         msg: 'That vintage doesn‘t look right. [YYYY]'
-//       },
-//       custRegion: {
-//         msg: 'A region was improperly written'
-//       },
-//       custWinery: {
-//         msg: 'A winery name was improperly written'
-//       },
-//       custBlend: {
-//         msg: 'The blend was improperly written'
-//       },
-//       custPrice: {
-//         msg: 'A price must be entered as [x.xx] or [$x.xx]'
-//       }
-//     }
-// });
-
-	console.log(req.body);
-
-   	var custJson = {code: "custom",
+   	var wineJson = {code: "custom-"+req.body['name'],
 	name: req.body['name'],
 	region: req.body['region'],
 	winery: req.body['winery'],
@@ -132,11 +106,10 @@ app.post('/custom', (req, res) => {
 	image_url: "imgs/custDefault.png",
 	favorite: 1};
 	//"listType": "inventory_list"}
+	//It is automatically being added to favorites
+  	dataLayer.addToDB(wineJson);
+	res.render('pages/index');
 
-  dataLayer.addToDB(custJson)// .then(function(result){
-        //add it to the list
-        //dataLayer.addToList(wineJson['code'],listType);
-    //});
 });
 
  // **************** EDITED ABOVE ****************************************

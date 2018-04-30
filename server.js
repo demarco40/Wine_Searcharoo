@@ -127,12 +127,18 @@ app.post('/addToList', function(req,res){
     //get the list type from passed in json
     var listType = req.body['listType'];
     //get all the wine info
-    var wineJson = req.body["wines"][0];
-    //first add it to the database. If it is already there nothing happens
-    dataLayer.addToDB(wineJson).then(function(result){
-        //add it to the list
-        dataLayer.addToList(wineJson['code'],listType);
-    });
+	console.log(req.body['code']);
+	if (req.body['code'].split("-")[0] == 'custom') {
+		dataLayer.addToList(req.body['code'],listType);
+	}
+	else {
+		var wineJson = req.body["wines"][0];
+		//first add it to the database. If it is already there nothing happens
+		dataLayer.addToDB(wineJson).then(function(result){
+			//add it to the list
+			dataLayer.addToList(wineJson['code'],listType);
+		});
+	}
 });
 
 app.post('/removeFromList', function(req,res){

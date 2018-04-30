@@ -184,6 +184,7 @@ function addToList(wineApiCode, listType){
             //result is a json string for the wine that was just clicked. turn it into an object
             var jsonObj = JSON.parse(result);
             jsonObj.listType = listType;
+            jsonObj.code = wineApiCode;
 
             //make an ajax call to the server to add it to the database
             //this will check to see if it exists before adding it
